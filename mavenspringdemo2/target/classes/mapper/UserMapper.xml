@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.login.dao.UserDao">
+
+    <insert id="insert"   parameterType="UserPO"   >
+           insert into user(name,password,age,sex)
+           values(#{name},#{password},#{age},#{sex})
+    </insert>
+
+    <select id="getUser"  resultType="UserPO" >
+          SELECT name,password,sex,age  FROM USER WHERE NAME=#{name} AND PASSWORD=#{password}
+    </select>
+
+    <select id="getName" parameterType="java.lang.String" resultType="UserPO">
+        select name,password,sex,age  from USER where name=#{name};
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>注册页面</title>
+</head>
+<body>
+    <h1>欢迎来到注册页面</h1>
+    <form class="form"  action="regist"  method="post">
+      用户名：<input type="text" name="name" placeholder="用户名" /><br />
+      密&nbsp;&nbsp; 码：<input type="password" name="password" placeholder="密码" /><br />
+      年&nbsp;&nbsp; 龄：<input type="text" name="age" placeholder="年龄" /><br />
+      性&nbsp;&nbsp; 别：<input type="text" name="sex" placeholder="性别" /><br /><br /><br />
+      <button type="submit" >注册</button>
+      <div th:unless="${#strings.isEmpty(mess)}"  th:text="${mess}">用户名被注册</div>
+    </form>
+</body>
+</html>
