@@ -36,7 +36,7 @@ class AuthorController {
         return authorService.findAuthor(userId) ?: throw RuntimeException("查询错误")
     }
 
-    /**
+    /**d
      * 查询用户信息
      */
     //请求方式    http://localhost:8080/authors/getAuthor?id=1

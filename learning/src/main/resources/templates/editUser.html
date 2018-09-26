@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>编辑用户</h1>
+<form action="/user/updateUser" name="userForm" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+    姓名：<input type="text" name="username" th:value="${user.username}"><br>
+    性别：<input type="text" name="sex" th:value="${user.sex }"><br>
+    年龄：<input type="text" name="age" th:value="${user.age }"><br>
+    <input type="submit" value="更新" >
+</form>
+</body>
+</html>
