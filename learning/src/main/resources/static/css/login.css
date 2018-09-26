@@ -1,0 +1,147 @@
+body {
+    /*background: #FFC627 url('/img/my/bg-login.jpg') 50% 0 no-repeat;*/
+    background: #F6EDE8 url('/img/bg-overlayered.jpg') 50% 0 no-repeat;
+    background-size: cover;
+    min-width: 320px;
+    height: auto;
+}
+.loginpage .modal {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    z-index: 1;
+    display: block;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.loginpage .modal-content {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
+@media screen and (min-width: 600px) {
+    .modal-dialog {
+        width: 540px;
+        margin: 30px auto;
+    }
+    /*.loginpage .modal {
+        padding-top: 80px;
+    }*/
+    .loginpage .modal-body {
+        padding: 25px 40px;
+    }
+    .modal-footer {
+        padding-left: 40px; padding-right: 40px;
+    }
+
+}
+
+.loginpage a.logo-link {
+    float: left;
+    width: 230px;
+    display: block;
+    padding: 0;
+    min-height: 30px;
+}
+.loginpage a.logo-link img {
+    /*width: 58px;*/
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+.loginpage a.logo-link span {
+    font-size: 22px;
+    text-shadow: 0 1px 0 rgba(255, 248, 176, 0.7);
+    line-height: 1.1;
+    color: #000;
+    display: block !important;
+}
+.loginpage .modal-body h2 {
+    font-size: 28px;
+}
+.login-support {
+    text-align: center;
+}
+
+.loginpage .modal-body h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.loginpage .btn-green{
+    min-width: 100px;
+}
+.login-options {
+    margin-top: -5px;
+}
+.lang-dropdown {
+    position: absolute;
+    /*top: -100px;*/
+    right: 0px;
+}
+.lang-dropdown a.btn-outlined-w {
+    background: transparent;
+    border-color: #666;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    padding: 3px 8px;
+    font-size: 15px;
+}
+.lang-dropdown a.btn-outlined-w:hover,
+.lang-dropdown a.btn-outlined-w:active,
+.lang-dropdown.open a.btn-outlined-w {
+    /*color: #428bca;*/
+    background: rgba(255,255,255,0.5);
+}
+.lang-dropdown.open a.btn-outlined-w {box-shadow: inset 0 2px 2px rgba(0,0,0,0.2)}
+#lang-selector {
+    border: 1px solid #aaa;
+    top: 36px;
+}
+#lang-selector:before, #user-dropdown:before {
+    border-bottom-color: #aaa;
+}
+#lang-selector img {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    margin-right: 2px;
+}
+#lang-selector a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#lang-selector:after, #user-dropdown:after {
+    border-bottom-color: #F6FCFF;
+}
+
+.modal-dialog {
+    position: initial;
+}
+
+div.modal-dialog:first-child {
+    position: relative;
+}
+@media (max-width: 767px) {
+    .loginpage .modal-body h2 {
+        text-align: left;
+        margin-bottom: 15px;
+        margin-right: 40px;
+    }
+    .lang-dropdown {
+        /*top: 20px;*/
+        right: 20px;
+        margin-top: -5px;
+    }
+}
+
+.btn-social .social-icon {
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+    left: -1px;
+}
