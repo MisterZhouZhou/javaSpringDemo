@@ -15,11 +15,9 @@ public class HttpUtil {
     /**
      * 发送POST请求
      *
-     * @param url
-     *            目的地址
-     * @param json
-     *            请求参数，Map类型。
-     * @return 远程响应结果
+     * @param url 目的地址
+     * @param json 请求参数，JSONObject类型
+     * @return 响应结果
      */
     public static JSONObject httpPost(String url, JSONObject json) {
         HttpPost httpPost = new HttpPost(url);
