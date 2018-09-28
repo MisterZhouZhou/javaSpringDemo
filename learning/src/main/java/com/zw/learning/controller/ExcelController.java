@@ -62,8 +62,8 @@ public class ExcelController {
             System.out.println(id + "-" + name + "-" + age+ "-" + address);
         }
         // 关闭文件
-//        fileInputStream.close();
-        System.out.println("测光");
+        fileInputStream.close();
+        System.out.println("测试完成了");
 
     }
 
@@ -76,10 +76,12 @@ public class ExcelController {
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("Sheet1");
+        // 设置cell样式
         HSSFCellStyle cellStyle = workbook.createCellStyle();
         cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
         cellStyle.setVerticalAlignment(CellStyle.ALIGN_CENTER);
 
+        // 设置字体样式
         Font font = workbook.createFont();
         font.setColor(HSSFColor.RED.index);
         font.setBold(true);
@@ -123,9 +125,22 @@ public class ExcelController {
             long id = (long)user.get("id");
             String name = (String)user.get("name");
             int age = (int)user.get("age");
-            row.createCell(0).setCellValue(id);
-            row.createCell(1).setCellValue(name);
-            row.createCell(2).setCellValue(age);
+
+            HSSFCellStyle cellStyle_cell = workbook.createCellStyle();
+            cellStyle_cell.setAlignment(CellStyle.ALIGN_CENTER);
+            cellStyle_cell.setVerticalAlignment(CellStyle.ALIGN_CENTER);
+
+            HSSFCell cell0 = row.createCell(0);
+            cell0.setCellValue(id);
+            cell0.setCellStyle(cellStyle_cell);
+
+            HSSFCell cell1 = row.createCell(1);
+            cell1.setCellValue(name);
+            cell1.setCellStyle(cellStyle_cell);
+
+            HSSFCell cell2 = row.createCell(2);
+            cell2.setCellValue(age);
+            cell2.setCellStyle(cellStyle_cell);
         }
 
         OutputStream outputStream = response.getOutputStream();
