@@ -13,4 +13,12 @@ public class LearningApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void testUserTest() {
+//		UserPo user = new UserPo();
+//		user.setName("AnyCode");
+//		user.setAge(20);
+//		System.err.println(user.toString());
+	}
+
 }
