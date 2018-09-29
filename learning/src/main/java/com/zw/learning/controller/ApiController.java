@@ -96,7 +96,7 @@ public class ApiController {
 
 
     /**
-     * @Description 获取请求IP
+     * @Description 获取获取信息
      * @return string
      */
     // HttpServletRequest 适用于get请求方式
@@ -113,7 +113,7 @@ public class ApiController {
     }
 
     /**
-     * @Description 获取请求IP
+     * @Description 获取获取信息2
      * @return string
      */
     // @RequestBody JSONObject jsonObject 这种方式适用于post请求方式
