@@ -2,6 +2,7 @@ package com.zw.learning.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zw.learning.entity.User;
+import com.zw.learning.utils.CusAccessObjectUitl;
 import com.zw.learning.utils.HttpUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,19 @@ public class ApiController {
         JSONObject ojb = HttpUtil.httpGet(url);
         return ojb;
     }
+
+
+    /**
+     * @Description 获取请求IP
+     * @return string
+     */
+    @RequestMapping(value = "/getRequestIp", method = RequestMethod.GET)
+    @ResponseBody
+    public String getRequestIp(HttpServletRequest request){
+        return CusAccessObjectUitl.getIpAddress(request);
+    }
+
+
 
 
 }
