@@ -1,6 +1,7 @@
 package com.zw.learning.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
   * 学生基本信息实体
@@ -10,7 +11,7 @@ import javax.persistence.*;
   */
 @Entity
 @Table(name = "t_student")
-public class Student {
+public class Student implements Serializable {
     /**
       * 学号,唯一不重复
       * 声明主键

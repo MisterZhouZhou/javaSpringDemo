@@ -2,8 +2,11 @@ package com.zw.learning.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zw.learning.entity.User;
+import com.zw.learning.service.StudentService;
 import com.zw.learning.utils.CusAccessObjectUitl;
 import com.zw.learning.utils.HttpUtil;
+import com.zw.learning.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/api")
 public class ApiController {
+
+    @Autowired
+    StudentService studentService;
 
     /***
      * @Description 获取用户列表
@@ -73,6 +79,55 @@ public class ApiController {
         return CusAccessObjectUitl.getIpAddress(request);
     }
 
+
+    /**
+     * @Description 获取请求IP
+     * @return string
+     */
+    @RequestMapping(value = "/getStudentList", method = RequestMethod.GET)
+    @ResponseBody
+    public R getStudentList(HttpServletRequest request){
+        try{
+            return R.isOK().data(studentService.list());
+        }catch (Exception e){
+            return R.isFail(e);
+        }
+    }
+
+
+    /**
+     * @Description 获取请求IP
+     * @return string
+     */
+    // HttpServletRequest 适用于get请求方式
+    @RequestMapping(value = "/getStudent", method = RequestMethod.GET)
+    @ResponseBody
+    public R getStudent(HttpServletRequest request){
+        String name = request.getParameter("name");
+        Integer num = Integer.valueOf(request.getParameter("num"));
+        try{
+            return R.isOK().data(studentService.findStudentWithNumAndName(name, num));
+        }catch (Exception e){
+            return R.isFail(e);
+        }
+    }
+
+    /**
+     * @Description 获取请求IP
+     * @return string
+     */
+    // @RequestBody JSONObject jsonObject 这种方式适用于post请求方式
+    @RequestMapping(value = "/getStudent2", method = RequestMethod.POST)
+    @ResponseBody
+    public R getStudent2(@RequestBody JSONObject jsonObject){
+        String name = jsonObject.getString("name");
+        Integer num = Integer.valueOf(jsonObject.getString("num"));
+        try{
+            return R.isOK().data(studentService.findStudentWithNumAndName(name, num));
+        }catch (Exception e){
+            return R.isFail(e);
+        }
+    }
 
 
 
