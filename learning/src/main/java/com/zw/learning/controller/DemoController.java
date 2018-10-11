@@ -6,13 +6,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/demo")
 public class DemoController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/{tmp}.jsp", method = RequestMethod.GET)
+    public String helloJsp(){
+        return "hello";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hello(){
         return "hello";
     }
+
 
     @RequestMapping(value = "/getHello", method = RequestMethod.GET)
     @ResponseBody
