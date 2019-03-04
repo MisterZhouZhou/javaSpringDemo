@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chapter-1-spring-boot-quickstart" />
+        <module name="chapter-2-spring-boot-config" />
+        <module name="chapter-3-spring-boot-web" />
+        <module name="chapter-4-spring-boot-validating-form-input" />
+        <module name="chapter-4-spring-boot-web-thymeleaf" />
+        <module name="chapter-5-spring-boot-data-jpa" />
+        <module name="chapter-5-spring-boot-paging-sorting" />
+        <module name="chapter-6-spring-boot-cache-redis" />
+        <module name="spring-boot-jpa-thymeleaf-curd" />
+        <module name="spring-data-elasticsearch-crud" />
+        <module name="spring-data-elasticsearch-query" />
+        <module name="springboot-actuator" />
+        <module name="springboot-configuration" />
+        <module name="springboot-dubbo-client" />
+        <module name="springboot-dubbo-server" />
+        <module name="springboot-fastDFS" />
+        <module name="springboot-file-upload" />
+        <module name="springboot-freemarker" />
+        <module name="springboot-mail" />
+        <module name="springboot-mybatis" />
+        <module name="springboot-mybatis-annotation" />
+        <module name="springboot-mybatis-redis" />
+        <module name="springboot-mybatis-redis-annotation" />
+        <module name="springboot-properties" />
+        <module name="springboot-restful" />
+        <module name="springboot-scheduler" />
+        <module name="springboot-shiro" />
+        <module name="springboot-validation-over-json" />
+        <module name="springboot-webflux-1-quickstart" />
+        <module name="springboot-webflux-2-restful" />
+        <module name="springboot-webflux-3-mongodb" />
+        <module name="springboot-webflux-4-thymeleaf" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chapte-1-spring-boot-quickstart" target="1.7" />
+      <module name="chapter-1-spring-boot-quickstart (1)" target="1.7" />
+      <module name="chapter-2-spring-boot-config (1)" target="1.8" />
+      <module name="dockercompose-springboot-mysql-nginx" target="1.7" />
+      <module name="springboot-dubbo-client (1)" target="1.6" />
+      <module name="springboot-mybatis-mutil-datasource" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
