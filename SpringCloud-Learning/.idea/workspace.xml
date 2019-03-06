@@ -23,6 +23,10 @@
     <ignored path="$PROJECT_DIR$/didispace-multiservice/target/" />
     <ignored path="$PROJECT_DIR$/didispace-httpclient/target/" />
     <ignored path="$PROJECT_DIR$/didispace-httpservice/target/" />
+    <ignored path="$PROJECT_DIR$/didispace-admin/target/" />
+    <ignored path="$PROJECT_DIR$/didispace-dingding/target/" />
+    <ignored path="$PROJECT_DIR$/didispace-excel/target/" />
+    <ignored path="$PROJECT_DIR$/didispace-pdf/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,56 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpservice/pom.xml">
+      <file leaf-file-name="ReportExcel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ReportExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="37" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpClientApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/java/com/didispace/HttpClientApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/java/com/didispace/controller/OrderController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+            <state relative-caret-position="265">
+              <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,38 +48,118 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/java/com/didispace/dao/UserDao.java">
+      <file leaf-file-name="ExcelController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/controller/ExcelController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="29" column="38" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#476#485#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpclient/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-            </state>
-          </provider>
+      <file leaf-file-name="PdfApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/PdfApplication.java">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="HttpServiceApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/HttpServiceApplication.java">
+      <file leaf-file-name="PdfController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/controller/PdfController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="153">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#550#551#0" expanded="true" />
-                <element signature="e#583#584#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PdfUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/pdf/PdfUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="71" column="20" lean-forward="true" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3395#3402#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TitleEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/TitleEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="33" />
+              <folding>
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#228#229#0" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#328#329#0" expanded="true" />
+                <element signature="e#364#365#0" expanded="true" />
+                <element signature="e#396#397#0" expanded="true" />
+                <element signature="e#446#447#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
+                <element signature="e#626#627#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateFormat.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/text/DateFormat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="342" column="24" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoanEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/LoanEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="531">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+              <folding>
+                <element signature="e#188#189#0" expanded="true" />
+                <element signature="e#221#222#0" expanded="true" />
+                <element signature="e#274#275#0" expanded="true" />
+                <element signature="e#318#319#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
+                <element signature="e#376#377#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+                <element signature="e#448#449#0" expanded="true" />
+                <element signature="e#485#486#0" expanded="true" />
+                <element signature="e#517#518#0" expanded="true" />
+                <element signature="e#568#569#0" expanded="true" />
+                <element signature="e#610#611#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExcelUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ExcelUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="265" column="13" lean-forward="true" selection-start-line="241" selection-start-column="12" selection-end-line="265" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1092#1099#0" expanded="true" />
+                <element signature="e#6617#6624#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,69 +176,41 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name=</find>
-      <find>error</find>
-      <find>=====</find>
-      <find>DataLoader</find>
-      <find>hy Spring Boot</find>
-      <find>HashMap</find>
-      <find>timestamp</find>
-      <find>exception</find>
-      <find>ControllerAdvice</find>
-      <find>dataformat</find>
-      <find>mysql-connector-java</find>
-      <find>secondaryDataSource</find>
-      <find>secondJdbcTemplate</find>
-      <find>import org.springframework.jdbc.core.JdbcTemplate;</find>
-      <find>StateMachineConfigurationConfigurer</find>
-      <find>StateMachineListenerAdapter</find>
-      <find>EventConfig</find>
-      <find>success</find>
-      <find>被</find>
-      <find>SpringBootApplication</find>
-      <find>-----------------------</find>
-      <find>------</find>
       <find>--------</find>
       <find>/failed</find>
       <find>/success/info</find>
       <find>servletRequest</find>
       <find>jpa</find>
       <find>h2</find>
+      <find>dependency</find>
+      <find>PostMapping</find>
+      <find>RequestBody</find>
+      <find>isAtAll</find>
+      <find>client</find>
+      <find>Builder</find>
+      <find>content</find>
+      <find>HttpServletResponse</find>
+      <find>request</find>
+      <find>out</find>
+      <find>ExcelAnnotation</find>
+      <find>HSSFComment</find>
+      <find>Date</find>
+      <find>list</find>
+      <find>className</find>
+      <find>model</find>
+      <find>fontBigBold</find>
+      <find>result</find>
+      <find>clazz</find>
+      <find>createTableRow</find>
+      <find>fieldList</find>
+      <find>dealCreateRow07S</find>
+      <find>methodNamemethodName</find>
+      <find>table1</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/didispace-mybatis/pom.xml" />
-        <option value="$PROJECT_DIR$/didispace-mybatis/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/didispace-mybatis/src/main/java/com/didispace/domain/User.java" />
-        <option value="$PROJECT_DIR$/didispace-mybatis/src/main/java/com/didispace/MybatisApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-mybatis/src/main/java/com/didispace/mapper/UserMapper.java" />
-        <option value="$PROJECT_DIR$/didispace-mybatis/src/main/java/com/didispace/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/pom.xml" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/enum/Events.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/enums/Events.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/enums/States.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/StateMachineApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/config/EventConfig.java" />
-        <option value="$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/config/StateMachineConfig.java" />
-        <option value="$PROJECT_DIR$/didispace-async/pom.xml" />
-        <option value="$PROJECT_DIR$/didispace-async/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/didispace-async/src/main/java/com/didispace/AsyncApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-async/src/main/java/com/didispace/async/Task.java" />
-        <option value="$PROJECT_DIR$/didispace-async/src/main/java/com/didispace/web/HelloController.java" />
-        <option value="$PROJECT_DIR$/didispace-swagger2/src/main/java/com/didispace/web/UserController.java" />
-        <option value="$PROJECT_DIR$/didispace-filter/pom.xml" />
-        <option value="$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/FilterApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/controller/FilterController.java" />
-        <option value="$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/filter/UrlFilter.java" />
-        <option value="$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/interceptor/MyInterceptor.java" />
-        <option value="$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/configuration/WebMvcConfig.java" />
-        <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/ListenerApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/MultiServiceApplication.java" />
-        <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/domain/Customer.java" />
-        <option value="$PROJECT_DIR$/didispace-multiservice/src/main/resources/data.sql" />
         <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/repository/UserRepository.java" />
         <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/web/MultiServiceController.java" />
         <option value="$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/web/UserController.java" />
@@ -221,6 +232,36 @@
         <option value="$PROJECT_DIR$/didispace-httpclient/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/didispace-httpclient/src/main/java/com/didispace/controller/OrderController.java" />
         <option value="$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/didispace-admin/src/main/java/com/didispace/AsyncApplication.java" />
+        <option value="$PROJECT_DIR$/didispace-admin/src/main/java/com/didispace/AdminApplication.java" />
+        <option value="$PROJECT_DIR$/didispace-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/DingdingApplication.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/pom.xml" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/ActionCardButtonEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/utils/StringUtils.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/FeedCardLinkEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/controller/DingdingController.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/utils/DingdingUtils.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/TextEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/LinkEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/MarkdownEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/ActionCardEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/FeedCardEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/pom.xml" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/ExcelApplication.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ExcelAnnotation.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/product/Product.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ReportExcel.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel2/ExportExcel.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/controller/ExcelController.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/controller/Excel2Controller.java" />
+        <option value="$PROJECT_DIR$/didispace-pdf/pom.xml" />
+        <option value="$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/PdfApplication.java" />
+        <option value="$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/controller/PdfController.java" />
+        <option value="$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ExcelUtil.java" />
+        <option value="$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/LoanEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/TitleEntity.java" />
+        <option value="$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/pdf/PdfUtils.java" />
       </list>
     </option>
   </component>
@@ -241,9 +282,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="69" />
-    <option name="y" value="23" />
-    <option name="width" value="1386" />
+    <option name="x" value="65" />
+    <option name="y" value="38" />
+    <option name="width" value="1391" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectView">
@@ -258,13 +299,133 @@
               <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-excel" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+              <item name="excel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpringCloud-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpringCloud-Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace-pdf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="didispace" type="462c0819:PsiDirectoryNode" />
+              <item name="pdf" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,23 +448,23 @@
     <property name="show.run.dashboard.notification" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/didispace-httpclient/src/main/resources" />
-      <recent name="$PROJECT_DIR$/didispace-httpservice/src/main/resources" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/didispace-filter/src/main/resources" />
-      <recent name="$PROJECT_DIR$/didispace-async/src/main/java/com/didispace" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.didispace" />
-      <recent name="com.didispace.web" />
-      <recent name="com.didispace.repository" />
-      <recent name="com.didispace.domain" />
-      <recent name="com.didispace.domain.repository" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/didispace-globalError/src/main/resources/templates/error" />
       <recent name="$PROJECT_DIR$/didispace-listener/src/main/java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.didispace" />
+      <recent name="com.didispace.controller" />
+      <recent name="com.didispace.web" />
+      <recent name="com.didispace.repository" />
+      <recent name="com.didispace.domain" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/didispace-pdf/src/main/resources" />
+      <recent name="$PROJECT_DIR$/didispace-excel/src/main/resources" />
+      <recent name="$PROJECT_DIR$/didispace-dingding/src/main/resources" />
+      <recent name="$PROJECT_DIR$/didispace-admin/src/main/resources" />
+      <recent name="$PROJECT_DIR$/didispace-httpclient/src/main/resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -318,7 +479,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.HttpClientApplication">
+  <component name="RunManager" selected="Spring Boot.PdfApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -338,19 +499,39 @@
       </option>
       <patterns />
     </configuration>
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="didispace-admin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.didispace.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.AdminApplication" />
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="didispace-propertites" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.Application" />
     </configuration>
-    <configuration name="AsyncApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="didispace-async" />
+    <configuration name="DingdingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="didispace-dingding" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.didispace.filter.*" />
+          <option name="PATTERN" value="com.didispace.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.AsyncApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.DingdingApplication" />
+    </configuration>
+    <configuration name="ExcelApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="didispace-excel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.didispace.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.ExcelApplication" />
     </configuration>
     <configuration name="FilterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="didispace-filter" />
@@ -370,45 +551,25 @@
       <module name="didispace-httpclient" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.didispace.*" />
+          <option name="PATTERN" value="com.didispace.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.HttpClientApplication" />
     </configuration>
-    <configuration name="HttpServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="didispace-httpservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.didispace.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.HttpServiceApplication" />
-    </configuration>
     <configuration name="JdbcTemplateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="didispace-jdbcTemplate" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.JdbcTemplateApplication" />
     </configuration>
-    <configuration name="MultiServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="didispace-multiservice" />
+    <configuration name="PdfApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="didispace-pdf" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.didispace.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.MultiServiceApplication" />
-    </configuration>
-    <configuration name="Swagger2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="didispace-swagger2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.didispace.filter.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.Swagger2Application" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.didispace.PdfApplication" />
     </configuration>
     <configuration name="jpahibernateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="didispace-jpahibernate" />
@@ -441,19 +602,19 @@
       <item itemvalue="Spring Boot.GlobalErrorApplication" />
       <item itemvalue="Spring Boot.JdbcTemplateApplication" />
       <item itemvalue="Spring Boot.jpahibernateApplication" />
-      <item itemvalue="Spring Boot.AsyncApplication" />
-      <item itemvalue="Spring Boot.Swagger2Application" />
-      <item itemvalue="Spring Boot.FilterApplication" />
-      <item itemvalue="Spring Boot.MultiServiceApplication" />
       <item itemvalue="Spring Boot.HttpClientApplication" />
+      <item itemvalue="Spring Boot.AdminApplication" />
+      <item itemvalue="Spring Boot.DingdingApplication" />
+      <item itemvalue="Spring Boot.ExcelApplication" />
+      <item itemvalue="Spring Boot.PdfApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.PdfApplication" />
+        <item itemvalue="Spring Boot.ExcelApplication" />
+        <item itemvalue="Spring Boot.DingdingApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
         <item itemvalue="Spring Boot.HttpClientApplication" />
-        <item itemvalue="Spring Boot.HttpServiceApplication" />
-        <item itemvalue="Spring Boot.MultiServiceApplication" />
-        <item itemvalue="Spring Boot.FilterApplication" />
-        <item itemvalue="Spring Boot.Swagger2Application" />
       </list>
     </recent_temporary>
   </component>
@@ -475,7 +636,9 @@
       <workItem from="1550109855896" duration="17744000" />
       <workItem from="1550195619538" duration="6078000" />
       <workItem from="1550458876373" duration="7744000" />
-      <workItem from="1551668854088" duration="8145000" />
+      <workItem from="1551668854088" duration="16878000" />
+      <workItem from="1551757667513" duration="10409000" />
+      <workItem from="1551839648467" duration="15067000" />
     </task>
     <servers />
   </component>
@@ -488,10 +651,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65890000" />
+    <option name="totallyTimeSpent" value="100099000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="23" width="1386" height="877" extended-state="1" />
+    <frame x="65" y="38" width="1391" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -503,7 +667,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.53205127" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.13205129" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32948717" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -511,10 +675,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="8" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16923077" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.15512821" />
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2564863" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32948717" />
@@ -620,7 +784,7 @@
           <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="34" />
+      <option name="time" value="57" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -628,375 +792,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/didispace-swagger2/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-swagger2/src/main/java/com/didispace/web/HelloController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-swagger2/src/main/java/com/didispace/domain/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="24" selection-start-line="13" selection-start-column="4" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-statemachine/src/main/java/com/didispace/enums/Events.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-swagger2/src/main/java/com/didispace/web/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-swagger2/src/main/java/com/didispace/Swagger2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-user/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="42" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/filter/FilterApplication.java" />
-    <entry file="file://$PROJECT_DIR$/didispace-user/src/main/java/com/didispace/UserApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot/1.5.9.RELEASE/spring-boot-1.5.9.RELEASE.jar!/org/springframework/boot/SpringApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="63" column="60" lean-forward="true" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.23/tomcat-embed-core-8.5.23.jar!/org/apache/catalina/connector/RequestFacade.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3672">
-          <caret line="251" selection-start-line="251" selection-end-line="251" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/FilterApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/controller/FilterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/filter/UrlFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/interceptor/MyInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/configuration/WebMvcConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-mybatis/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="67" column="12" selection-start-line="5" selection-start-column="3" selection-end-line="67" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-jdbcTemplate/src/main/java/com/didispace/domain/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-jpahibernate/src/main/java/com/didspace/repository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-jpahibernate/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/entity/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="21" />
-          <folding>
-            <element signature="e#109#110#0" expanded="true" />
-            <element signature="e#136#137#0" expanded="true" />
-            <element signature="e#176#177#0" expanded="true" />
-            <element signature="e#208#209#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-jdbcTemplate/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="41" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-jpahibernate/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/repository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/web/MultiServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/resources/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/resources/data.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/MultiServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/web/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/Id.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/web/MovieController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-multiservice/src/main/java/com/didispace/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-            <element signature="e#554#555#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#703#704#0" expanded="true" />
-            <element signature="e#734#735#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#981#982#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1112#1113#0" expanded="true" />
-            <element signature="e#1142#1143#0" expanded="true" />
-            <element signature="e#1192#1193#0" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="115" column="16" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-propertites/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="55" column="12" selection-start-line="5" selection-start-column="4" selection-end-line="55" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding>
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#158#159#0" expanded="true" />
-            <element signature="e#195#196#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#289#290#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="20" selection-start-line="11" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#276#282#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/didispace-httpservice/src/main/java/com/didispace/HttpServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/didispace-httpservice/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1038,7 +833,7 @@
     <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -1046,20 +841,418 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
-            <element signature="e#583#584#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/didispace-httpclient/src/main/java/com/didispace/controller/OrderController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        <state relative-caret-position="478">
+          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-binder/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="48" column="12" selection-start-line="5" selection-start-column="4" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-admin/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-admin/src/main/java/com/didispace/AdminApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-admin/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-filter/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="12" selection-start-line="5" selection-start-column="4" selection-end-line="54" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/DingdingApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-xml/src/main/java/com/didispace/web/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="41" selection-start-line="5" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp3/okhttp/3.4.1/okhttp-3.4.1.jar!/okhttp3/Request.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/utils/StringUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/ActionCardButtonEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding>
+            <element signature="e#181#182#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#251#252#0" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#403#404#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/utils/DingdingUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="27" selection-start-line="16" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/controller/DingdingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/TextEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/LinkEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="80" column="2" selection-start-line="80" selection-start-column="2" selection-end-line="80" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/MarkdownEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/ActionCardEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="133" column="5" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/FeedCardLinkEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="31" />
+          <folding>
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#252#253#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#361#362#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#592#593#0" expanded="true" />
+            <element signature="e#636#637#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/src/main/java/com/didispace/entity/FeedCardEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-dingding/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="65" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ExcelAnnotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-filter/src/main/java/com/didispace/interceptor/MyInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="71" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/ExcelApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="1913" column="19" selection-start-line="1913" selection-start-column="19" selection-end-line="1913" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/product/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#334#335#0" expanded="true" />
+            <element signature="e#361#362#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#625#626#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#695#696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel2/ExportExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="265" column="27" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+            <element signature="e#1407#1408#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/controller/Excel2Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="84" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/PdfApplication.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ReportExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/controller/ExcelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="29" column="38" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#476#485#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/text/DateFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="342" column="24" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/controller/PdfController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.9/poi-3.9.jar!/org/apache/poi/ss/usermodel/Sheet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-excel/src/main/java/com/didispace/excel/ExcelUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="265" column="13" lean-forward="true" selection-start-line="241" selection-start-column="12" selection-end-line="265" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1092#1099#0" expanded="true" />
+            <element signature="e#6617#6624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/LoanEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#188#189#0" expanded="true" />
+            <element signature="e#221#222#0" expanded="true" />
+            <element signature="e#274#275#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/entity/TitleEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#328#329#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/didispace-pdf/src/main/java/com/didispace/pdf/PdfUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="71" column="20" lean-forward="true" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3395#3402#0" expanded="true" />
           </folding>
         </state>
       </provider>

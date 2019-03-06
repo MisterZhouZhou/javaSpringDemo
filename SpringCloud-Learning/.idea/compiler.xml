@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="didispace-admin" />
         <module name="didispace-async" />
         <module name="didispace-binder" />
+        <module name="didispace-dingding" />
+        <module name="didispace-excel" />
         <module name="didispace-filter" />
         <module name="didispace-globalError" />
         <module name="didispace-htmltmp" />
@@ -20,6 +23,7 @@
         <module name="didispace-muljpahibernate" />
         <module name="didispace-multiservice" />
         <module name="didispace-mybatis" />
+        <module name="didispace-pdf" />
         <module name="didispace-propertites" />
         <module name="didispace-statemachine" />
         <module name="didispace-swagger2" />

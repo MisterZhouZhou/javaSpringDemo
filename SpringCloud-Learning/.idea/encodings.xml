@@ -2,8 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-async" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-binder" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-dingding" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-excel" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-filter" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-globalError" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-htmltmp" charset="UTF-8" />
@@ -16,6 +19,7 @@
     <file url="file://$PROJECT_DIR$/didispace-muljpahibernate" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-multiservice" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-mybatis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-pdf" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-propertites" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-statemachine" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-swagger2" charset="UTF-8" />
