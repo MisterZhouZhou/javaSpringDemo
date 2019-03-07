@@ -6,6 +6,9 @@
     <file url="file://$PROJECT_DIR$/didispace-async" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-binder" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-dingding" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-eureka-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-eureka-customer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/didispace-eureka-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-excel" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-filter" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/didispace-globalError" charset="UTF-8" />

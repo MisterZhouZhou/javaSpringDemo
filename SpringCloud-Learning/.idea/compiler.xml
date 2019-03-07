@@ -10,6 +10,9 @@
         <module name="didispace-async" />
         <module name="didispace-binder" />
         <module name="didispace-dingding" />
+        <module name="didispace-eureka-client" />
+        <module name="didispace-eureka-customer" />
+        <module name="didispace-eureka-service" />
         <module name="didispace-excel" />
         <module name="didispace-filter" />
         <module name="didispace-globalError" />
