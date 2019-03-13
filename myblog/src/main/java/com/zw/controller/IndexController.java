@@ -3,19 +3,34 @@ package com.zw.controller;
 import com.zw.model.FeedBack;
 import com.zw.service.*;
 import com.zw.utils.TransCodingUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+
+
+//@ApiImplicitParam：
+//   paramType：参数放在哪个地方
+//   header 请求参数的获取：@RequestHeader
+//　　query 请求参数的获取：@RequestParam
+//　　path（用于restful接口） 请求参数的获取：@PathVariable
+//　　body（不常用）
+//        　　form（不常用）
+//        　　name：参数名
+//        　　dataType：参数类型
+//        　　required：参数是否必须传
+//        　　value：参数的意思
+//        　　defaultValue：参数的默认值
 
 /**
  * @author: zhangocean
@@ -46,6 +61,7 @@ public class IndexController {
      * 增加访客量
      * @return  网站总访问量以及访客量
      */
+    @ApiIgnore
     @GetMapping("/getVisitorNumByPageName")
     public @ResponseBody JSONObject getVisitorNumByPageName(HttpServletRequest request,
                                                             @RequestParam("pageName") String pageName) throws UnsupportedEncodingException {
@@ -70,21 +86,27 @@ public class IndexController {
 
     /**
      * 分页获得当前页文章
-     * @param rows 一页的大小
-     * @param pageNum 当前页
      */
-    @PostMapping("/myArticles")
-    public @ResponseBody
-    JSONArray myArticles(@RequestParam("rows") String rows,
-                         @RequestParam("pageNum") String pageNum){
-
+    @ApiOperation(value="分页获取文章信息", notes="根据rows和pageNum和来获取用户详细信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "rows", value = "每页数量", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "pageNum", value = "页数",required = true, dataType = "String", paramType = "query")
+    })
+    @GetMapping("/myArticles")
+    @ResponseBody
+    public JSONArray myArticles(@RequestParam("rows") String rows,
+                                @RequestParam("pageNum") String pageNum){
         return articleService.findAllArticles(rows, pageNum);
-
     }
 
     /**
      * 获得最新评论
      */
+    @ApiOperation(value="获得最新评论信息", notes="根据rows和pageNum和来获取最新评论信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "rows", value = "每页数量", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "pageNum", value = "页数",required = true, dataType = "String", paramType = "query")
+    })
     @GetMapping("/newComment")
     @ResponseBody
     public JSONObject newComment(@RequestParam("rows") String rows,
@@ -96,6 +118,11 @@ public class IndexController {
     /**
      * 获得最新留言
      */
+    @ApiOperation(value="获得最新评论信息", notes="根据rows和pageNum和来获取最新评论信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "rows", value = "每页数量", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "pageNum", value = "页数",required = true, dataType = "String", paramType = "query")
+    })
     @GetMapping("/newLeaveWord")
     @ResponseBody
     public JSONObject newLeaveWord(@RequestParam("rows") String rows,
@@ -108,6 +135,7 @@ public class IndexController {
     /**
      * 获得标签云
      */
+    @ApiIgnore
     @GetMapping("/findTagsCloud")
     @ResponseBody
     public JSONObject findTagsCloud(){
@@ -118,6 +146,7 @@ public class IndexController {
     /**
      * 获得右侧栏日志数、分类数、标签数
      */
+    @ApiIgnore
     @GetMapping("/findArchivesCategoriesTagsNum")
     @ResponseBody
     public JSONObject findArchivesCategoriesTagsNum(){
@@ -128,6 +157,10 @@ public class IndexController {
         return jsonObject;
     }
 
+    /**
+     * 获取站点信息
+     */
+    @ApiIgnore
     @GetMapping("/getSiteInfo")
     @ResponseBody
     public JSONObject getSiteInfo(){
@@ -145,6 +178,7 @@ public class IndexController {
      * @param principal
      * @return
      */
+    @ApiIgnore
     @PostMapping("/submitFeedback")
     @ResponseBody
     public JSONObject submitFeedback(FeedBack feedBack,

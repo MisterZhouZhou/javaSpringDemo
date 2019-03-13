@@ -29,12 +29,12 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public JSONObject findBanners() {
-        List<Banner> banners = bannerMapper.findBanners();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("status",200);
-        jsonObject.put("result",JSONArray.fromObject(banners));
-        return jsonObject;
+    public List<Banner> findBanners() {
+//        List<Banner> banners = bannerMapper.findBanners();
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("status",200);
+//        jsonObject.put("result",JSONArray.fromObject(banners));
+        return bannerMapper.findBanners();
     }
 
     @Override

@@ -479,7 +479,6 @@
         }
     });
 
-    alert(originalAuthor)
     //通过文章id和原作者请求文章信息
     $.ajax({
         type:'post',

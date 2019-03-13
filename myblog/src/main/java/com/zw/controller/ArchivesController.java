@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,6 +29,7 @@ public class ArchivesController {
      * 获得所有归档日期以及每个归档日期的文章数目
      * @return
      */
+    @ApiIgnore
     @GetMapping("/findArchiveNameAndArticleNum")
     public JSONObject findArchiveNameAndArticleNum(){
         return archiveService.findArchiveNameAndArticleNum();
@@ -40,6 +42,7 @@ public class ArchivesController {
      * @param request
      * @return
      */
+    @ApiIgnore
     @GetMapping("/getArchiveArticle")
     public JSONObject getArchiveArticle(@RequestParam("archive") String archive,
                                         HttpServletRequest request){

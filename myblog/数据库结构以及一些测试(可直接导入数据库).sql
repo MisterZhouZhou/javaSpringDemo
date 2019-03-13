@@ -308,3 +308,30 @@ INSERT INTO `visitor` VALUES ('1', '3212', 'totalVisitor');
 INSERT INTO `visitor` VALUES ('2', '1032', 'visitorVolume');
 INSERT INTO `visitor` VALUES ('3', '41', 'findArticle?articleId=1532884460&originalAuthor=张海洋');
 INSERT INTO `visitor` VALUES ('5', '57', 'findArticle?articleId=1533196734&originalAuthor=张海洋');
+
+
+--
+-- Table structure for table `banner`
+--
+
+DROP TABLE IF EXISTS `banner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bannerName` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `banner`
+--
+
+LOCK TABLES `banner` WRITE;
+/*!40000 ALTER TABLE `banner` DISABLE KEYS */;
+INSERT INTO `banner` VALUES (1,'告诉自己，明天，肯定会更好'),(2,'今天天气真好');
+/*!40000 ALTER TABLE `banner` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+

@@ -206,7 +206,7 @@
     function ajaxFirst(currentPage) {
     //加载时请求
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/myArticles',
         dataType: 'json',
         data: {
@@ -315,7 +315,6 @@
                 $.each(data['result'], function (index, obj) {
                     bannersRoll.append($('<li>' + obj["bannerName"] +'</li>'));
                 });
-
             },
             error: function () {
                 alert("获得最新留言信息失败！");

@@ -1,5 +1,6 @@
 package com.zw.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /***
@@ -7,10 +8,10 @@ import lombok.Data;
  */
 @Data
 public class Banner {
+    @ApiModelProperty(value = "banner id(默认不传)")
     private int id;
-    /**
-     * 归档日期
-     */
+
+    @ApiModelProperty(value = "banner标题")
     private String bannerName;
 
     public int getId() {

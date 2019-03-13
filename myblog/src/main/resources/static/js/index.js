@@ -206,7 +206,7 @@
     function ajaxFirst(currentPage) {
     //加载时请求
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/myArticles',
         dataType: 'json',
         data: {

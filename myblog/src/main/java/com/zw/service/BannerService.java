@@ -4,6 +4,8 @@ import com.zw.model.Banner;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Describe:banner业务操作
  */
@@ -19,7 +21,7 @@ public interface BannerService {
      * 获得所有的banner
      * @return
      */
-    JSONObject findBanners();
+    List<Banner> findBanners();
 
     /**
      * 获得banner数目
