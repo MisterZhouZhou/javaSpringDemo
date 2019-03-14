@@ -6,6 +6,8 @@ import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author: zhangocean
  * @Date: 2018/7/6 16:46
@@ -28,6 +30,13 @@ public interface CommentService {
      * @return
      */
     JSONArray findCommentByArticleIdAndOriginalAuthor(long articleId, String originalAuthor, String username);
+
+    /**
+     * 通过文章id获得文章所有评论和回复
+     * @param articleId 文章id
+     * @return
+     */
+    List<Comment> findCommentByArticleId(long articleId);
 
     /**
      * 通过文章id、原作者和pId获得评论下的所有回复
@@ -79,5 +88,12 @@ public interface CommentService {
      * @param articleId 文章id'
      */
     void deleteCommentByArticleId(long articleId);
+
+    /**
+     * 通过评论id删除评论
+     * @param commentId 评论 id
+     */
+    @Transactional
+    int deleteCommentByCommentId(long commentId);
 
 }

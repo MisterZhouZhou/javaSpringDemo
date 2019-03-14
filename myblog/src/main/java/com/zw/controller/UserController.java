@@ -7,6 +7,8 @@ import com.zw.service.PrivateWordService;
 import com.zw.service.UserService;
 import com.zw.utils.FileUtil;
 import com.zw.utils.TimeUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -44,6 +47,7 @@ public class UserController {
     /**
      * 上传头像
      */
+    @ApiIgnore
     @PostMapping("/uploadHead")
     public JSONObject uploadHead(HttpServletRequest request,
                           @AuthenticationPrincipal Principal principal){
@@ -84,6 +88,7 @@ public class UserController {
     /**
      * 获得头像
      */
+    @ApiIgnore
     @GetMapping("/getHeadPortraitUrl")
     public JSONObject getHeadPortraitUrl(@AuthenticationPrincipal Principal principal){
         String username = principal.getName();
@@ -93,6 +98,7 @@ public class UserController {
     /**
      * 获得个人资料
      */
+    @ApiIgnore
     @GetMapping("/getUserPersonalInfo")
     public JSONObject getUserPersonalInfo(@AuthenticationPrincipal Principal principal){
         String username = principal.getName();
@@ -102,6 +108,7 @@ public class UserController {
     /**
      * 保存个人资料
      */
+    @ApiIgnore
     @PostMapping("/savePersonalDate")
     public JSONObject savePersonalDate(User user,
                                        @AuthenticationPrincipal Principal principal){
@@ -122,6 +129,7 @@ public class UserController {
     /**
      * 获得该用户曾今的所有评论
      */
+    @ApiIgnore
     @PostMapping("/getUserComment")
     public JSONObject getUserComment(@RequestParam("rows") String rows,
                                      @RequestParam("pageNum") String pageNum,
@@ -142,6 +150,7 @@ public class UserController {
     /**
      * 获得该用户曾今的所有留言
      */
+    @ApiIgnore
     @PostMapping("/getUserLeaveMessage")
     public JSONObject getUserLeaveMessage(@RequestParam("rows") String rows,
                                           @RequestParam("pageNum") String pageNum,
@@ -163,6 +172,7 @@ public class UserController {
      * 发布悄悄话
      * @param privateWord 悄悄话内容
      */
+    @ApiIgnore
     @PostMapping("/sendPrivateWord")
     public JSONObject sendPrivateWord(@RequestParam("privateWord") String privateWord,
                                       @AuthenticationPrincipal Principal principal){
@@ -184,6 +194,7 @@ public class UserController {
      * @param rows 一页大小
      * @param pageNum 当前页
      */
+    @ApiIgnore
     @PostMapping("/getPrivateWordByPublisher")
     public JSONObject getPrivateWordByPublisher(@RequestParam("rows") String rows,
                                                 @RequestParam("pageNum") String pageNum,

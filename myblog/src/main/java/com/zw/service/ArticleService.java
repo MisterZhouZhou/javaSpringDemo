@@ -107,6 +107,11 @@ public interface ArticleService {
     JSONObject getArticleManagement(int rows, int pageNum);
 
     /**
+     * 分页获得文章评论内容
+     */
+    JSONObject getArticlesComment(int rows, int pageNum);
+
+    /**
      * 通过id获取文章
      */
     Article findArticleById(int id);

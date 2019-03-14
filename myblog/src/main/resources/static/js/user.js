@@ -565,8 +565,8 @@ $('#userLeaveMessageClick').click(function () {
 //发布悄悄话
 $('.userSayBtn').click(function () {
     var userSay = $('#userSay');
-    userSay = $.trim(userSay);
-    if(userSay.val().length == 0){
+    var userSayContent = $.trim(userSay.val());
+    if(userSayContent.length == 0){
         dangerNotice("你还没说两句呢");
     } else {
         $.ajax({
@@ -574,7 +574,7 @@ $('.userSayBtn').click(function () {
             url:'/sendPrivateWord',
             dataType:'json',
             data:{
-                privateWord:userSay.val()
+                privateWord:userSayContent
             },
             success:function (data) {
                 if(data['status'] == 403){

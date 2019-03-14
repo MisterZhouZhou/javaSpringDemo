@@ -6,6 +6,7 @@ import com.zw.service.ArticleService;
 import com.zw.service.UserService;
 import com.zw.utils.TimeUtil;
 import com.zw.utils.TransCodingUtil;
+import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +48,7 @@ public class ShowArticleController {
      * @param originalAuthor 原作者
      * @return
      */
+    @ApiIgnore
     @PostMapping("/getArticleByArticleIdAndOriginalAuthor")
     public @ResponseBody JSONObject getArticleByIdAndOriginalAuthor(@RequestParam("articleId") String articleId,
                                                                     @RequestParam("originalAuthor") String originalAuthor,
@@ -68,6 +71,7 @@ public class ShowArticleController {
      * @param articleId 文章号
      * @return
      */
+    @ApiIgnore
     @GetMapping("/addArticleLike")
     public @ResponseBody int addArticleLike(@RequestParam("articleId") String articleId,
                                             @RequestParam("originalAuthor") String originalAuthor,
@@ -94,15 +98,7 @@ public class ShowArticleController {
     }
 
 
-//    @GetMapping("/findArticle")
-//    public String findArticle(HttpServletRequest request, HttpServletResponse response){
-//        String articleId = request.getParameter("articleId");
-//        String originalAuthor = request.getParameter("originalAuthor");
-//        response.setHeader("articleId",articleId);
-//        response.setHeader("originalAuthor",originalAuthor);
-//        return "show";
-//    }
-
+    @ApiIgnore
     @GetMapping("/findArticle")
     public String show(@RequestParam("articleId") String articleId,
                        @RequestParam("originalAuthor") String originalAuthor,

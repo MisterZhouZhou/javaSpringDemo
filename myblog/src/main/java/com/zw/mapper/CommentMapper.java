@@ -34,6 +34,9 @@ public interface CommentMapper {
     @Select("select articleId,originalAuthor,pId,answererId,respondentId,commentDate,commentContent from comment_record order by id desc")
     List<Comment> findFiveNewComment();
 
+    @Select("select id,answererId,respondentId,commentContent from comment_record where articleId=#{articleId} order by id desc")
+    List<Comment> findArticleComments(@Param("articleId") long articleId);
+
     @Select("select id,pId,articleId,originalAuthor,answererId,respondentId,commentDate,commentContent from comment_record where answererId=#{answererId} order by id desc")
     List<Comment> getUserComment(@Param("answererId") int answererId);
 
@@ -48,4 +51,8 @@ public interface CommentMapper {
 
     @Delete("delete from comment_record where articleId=#{articleId}")
     void deleteCommentByArticleId(long articleId);
+
+    @Delete("delete from comment_record where id=#{commentId}")
+    void deleteCommentByCommentId(long commentId);
+
 }

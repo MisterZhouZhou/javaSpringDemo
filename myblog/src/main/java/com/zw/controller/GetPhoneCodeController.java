@@ -11,6 +11,7 @@ import com.zw.component.PhoneRandomBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class GetPhoneCodeController {
 
+    @ApiIgnore
     @PostMapping("/getCode")
     @ResponseBody
     public int getAuthCode(HttpServletRequest request){

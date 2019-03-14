@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +30,7 @@ public class TagsController {
      * @param tag
      * @return
      */
+    @ApiIgnore
     @PostMapping("/getTagArticle")
     public JSONObject getTagArticle(@RequestParam("tag") String tag,
                                     HttpServletRequest request){

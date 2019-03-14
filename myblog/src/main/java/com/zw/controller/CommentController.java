@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
 
@@ -45,6 +46,7 @@ public class CommentController {
      * @param originalAuthor 原作者
      * @return
      */
+    @ApiIgnore
     @PostMapping("/getAllComment")
     @ResponseBody
     public JSONArray getAllComment(@RequestParam("articleId") String articleId,
@@ -67,6 +69,7 @@ public class CommentController {
      * @param principal 当前用户
      * @return
      */
+    @ApiIgnore
     @PostMapping("/publishComment")
     @ResponseBody
     public JSONArray publishComment(Comment comment,
@@ -102,6 +105,7 @@ public class CommentController {
      * @param principal 当前用户
      * @return
      */
+    @ApiIgnore
     @PostMapping("/publishReply")
     @ResponseBody
     public JSONArray publishReply(Comment comment,
@@ -138,6 +142,7 @@ public class CommentController {
      * @param principal 当前用户
      * @return
      */
+    @ApiIgnore
     @GetMapping("/isLogin")
     @ResponseBody
     public int isLogin(@AuthenticationPrincipal Principal principal){
@@ -159,6 +164,7 @@ public class CommentController {
      * @param principal 当前用户
      * @return 点赞数
      */
+    @ApiIgnore
     @GetMapping("/addCommentLike")
     @ResponseBody
     public int addCommentLike(@RequestParam("articleId") String articleId,
@@ -185,5 +191,6 @@ public class CommentController {
         commentLikesRecordService.insertCommentLikesRecord(commentLikesRecord);
         return likes;
     }
+
 
 }

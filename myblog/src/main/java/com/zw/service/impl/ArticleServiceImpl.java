@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zw.component.StringAndArray;
 import com.zw.mapper.ArticleMapper;
 import com.zw.model.Article;
+import com.zw.model.Comment;
 import com.zw.service.*;
 import com.zw.utils.TimeUtil;
 import net.sf.json.JSONArray;
@@ -43,6 +44,8 @@ public class ArticleServiceImpl implements ArticleService {
     private CommentService commentService;
     @Autowired
     private CommentLikesRecordService commentLikesRecordService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public JSONObject insertArticle(Article article) {
@@ -370,6 +373,57 @@ public class ArticleServiceImpl implements ArticleService {
             String pageName = "findArticle?articleId=" + article.getArticleId() + "&originalAuthor=" + article.getOriginalAuthor();
             articleJson.put("visitorNum",visitorService.getNumByPageName(pageName));
 
+            returnJsonArray.add(articleJson);
+        }
+        returnJson.put("status",200);
+        returnJson.put("result",returnJsonArray);
+        JSONObject pageJson = new JSONObject();
+        pageJson.put("pageNum",pageInfo.getPageNum());
+        pageJson.put("pageSize",pageInfo.getPageSize());
+        pageJson.put("total",pageInfo.getTotal());
+        pageJson.put("pages",pageInfo.getPages());
+        pageJson.put("isFirstPage",pageInfo.isIsFirstPage());
+        pageJson.put("isLastPage",pageInfo.isIsLastPage());
+
+        returnJson.put("pageInfo",pageJson);
+
+        return returnJson;
+    }
+
+    @Override
+    public JSONObject getArticlesComment(int rows, int pageNum) {
+        PageHelper.startPage(pageNum, rows);
+        List<Article> articles = articleMapper.getArticleManagement();
+        PageInfo<Article> pageInfo = new PageInfo<>(articles);
+        JSONArray returnJsonArray = new JSONArray();
+        JSONObject returnJson = new JSONObject();
+        JSONObject articleJson;
+        for(Article article : articles){
+            articleJson = new JSONObject();
+            articleJson.put("id",article.getId());
+            articleJson.put("articleId",article.getArticleId());
+            articleJson.put("originalAuthor",article.getOriginalAuthor());
+            articleJson.put("articleTitle",article.getArticleTitle());
+            articleJson.put("articleCategories",article.getArticleCategories());
+            articleJson.put("publishDate",article.getPublishDate());
+            // 组装评论数据
+            List<Comment> comments = commentService.findCommentByArticleId(article.getArticleId());
+            JSONArray commentsJsonArray = new JSONArray();
+            JSONObject commentsJson = new JSONObject();
+            for (Comment comment : comments){
+                // 评论者
+                String answer = userService.findUsernameById(comment.getAnswererId());
+                // 被评论者
+                String responseAnswer = userService.findUsernameById(comment.getRespondentId());
+                commentsJson.put("id", comment.getId());
+                commentsJson.put("commentContent", comment.getCommentContent());
+                commentsJson.put("commentAnswerId", comment.getAnswererId());
+                commentsJson.put("responseAnswerId", comment.getRespondentId());
+                commentsJson.put("commentAnswer", answer);
+                commentsJson.put("responseAnswer", responseAnswer);
+                commentsJsonArray.add(commentsJson);
+            }
+            articleJson.put("comments",commentsJsonArray);
             returnJsonArray.add(articleJson);
         }
         returnJson.put("status",200);

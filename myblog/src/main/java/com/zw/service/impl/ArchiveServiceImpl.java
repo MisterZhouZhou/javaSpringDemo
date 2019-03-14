@@ -25,7 +25,7 @@ public class ArchiveServiceImpl implements ArchiveService {
     ArticleService articleService;
 
     @Override
-    public JSONObject findArchiveNameAndArticleNum() {
+    public JSONArray findArchiveNameAndArticleNum() {
         List<String> archives = archiveMapper.findArchives();
         JSONArray archivesJsonArray = new JSONArray();
         JSONObject archiveJson;
@@ -37,10 +37,7 @@ public class ArchiveServiceImpl implements ArchiveService {
             archiveJson.put("archiveArticleNum",articleService.countArticleArchiveByArchive(archiveName));
             archivesJsonArray.add(archiveJson);
         }
-        JSONObject returnJson = new JSONObject();
-        returnJson.put("status",200);
-        returnJson.put("result", archivesJsonArray);
-        return returnJson;
+        return archivesJsonArray;
     }
 
     @Override

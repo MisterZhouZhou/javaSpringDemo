@@ -1,6 +1,9 @@
 package com.zw.controller;
 
 import com.zw.service.ArticleService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,11 @@ public class MyStoryController {
     @Autowired
     ArticleService articleService;
 
+    @ApiOperation(value="我的故事信息", notes="")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "rows", value = "每页数量", required = false, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "pageNum", value = "页数",required = false, dataType = "String", paramType = "query")
+    })
     @GetMapping("/getMyStory")
     public JSONObject getMyStory(@RequestParam("rows") String rows,
                                  @RequestParam("pageNum") String pageNum){

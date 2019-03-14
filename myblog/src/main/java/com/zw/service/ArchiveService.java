@@ -1,5 +1,6 @@
 package com.zw.service;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public interface ArchiveService {
      * 获得归档信息
      * @return
      */
-    JSONObject findArchiveNameAndArticleNum();
+    JSONArray findArchiveNameAndArticleNum();
 
     /**
      * 添加归档日期

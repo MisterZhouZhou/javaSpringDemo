@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
 
@@ -43,6 +44,7 @@ public class LeaveMessageController {
      * @param principal 当前用户
      * @return
      */
+    @ApiIgnore
     @PostMapping("/publishLeaveMessage")
     public JSONObject publishLeaveMessage(@RequestParam("leaveMessageContent") String leaveMessageContent,
                                           @RequestParam("pageName") String pageName,
@@ -69,6 +71,7 @@ public class LeaveMessageController {
      * @param pageName 当前页
      * @return
      */
+    @ApiIgnore
     @GetMapping("/getPageLeaveMessage")
     public JSONObject getPageLeaveMessage(@RequestParam("pageName") String pageName,
                                           @AuthenticationPrincipal Principal principal){
@@ -85,6 +88,7 @@ public class LeaveMessageController {
      * 发布留言中的评论
      * @return
      */
+    @ApiIgnore
     @PostMapping("/publishLeaveMessageReply")
     public JSONObject publishLeaveMessageReply(LeaveMessage leaveMessage,
                                                @RequestParam("parentId") String parentId,
@@ -112,6 +116,7 @@ public class LeaveMessageController {
      * 点赞
      * @return 点赞数
      */
+    @ApiIgnore
     @GetMapping("/addLeaveMessageLike")
     public int addLeaveMessageLike(@RequestParam("pageName") String pageName,
                                    @RequestParam("respondentId") String respondentId,

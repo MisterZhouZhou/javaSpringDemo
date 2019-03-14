@@ -1,9 +1,9 @@
 
-    var deleteArticleId="";
+    var deleteConfig={};
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#friendLink,#userFeedback,#privateWord').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#friendLink,#userFeedback,#privateWord,#expressInfo').css("display","none");
         $("#" + flag).css("display","block");
     });
 
@@ -192,24 +192,126 @@
         });
         $('.articleDeleteBtn').click(function () {
             var $this = $(this);
-            deleteArticleId = $this.parent().parent().parent().attr("id").substring(1);
+            var deleteArticleId = $this.parent().parent().parent().attr("id").substring(1);
+            deleteConfig = {type: 'deleteArticle', deleteId: deleteArticleId};
             $('#deleteAlter').modal('open');
         })
     }
 
+    //填充评论内容
+    function putInArticleCommnet(data) {
+        var articleCommentTable = $('.articleCommentTable');
+        articleCommentTable.empty();
+        $.each(data['result'], function (index, obj) {
+            $.each(obj['comments'], function (cindex, cobj) {
+                var commentContent = cobj['commentAnswer'] + '评论 ' + cobj['responseAnswer'] + '：' + cobj['commentContent'];
+                if(cobj['commentAnswerId'] == cobj['responseAnswerId']){ // 评论人和回应者是同一个人
+                    commentContent = cobj['commentAnswer'] + '发表评论：' + cobj['commentContent'];
+                }
+                articleCommentTable.append($('<tr id="a' + cobj['id'] + '"><td><a href="findArticle?articleId=' + obj['articleId'] + '&originalAuthor=' + obj['originalAuthor'] + '">' + obj['articleTitle'] + '</a></td><td>' + obj['publishDate'] + '</td><td>' + obj['articleCategories'] + '</td> <td><span class="am-badge am-badge-success">' + commentContent  + '</span></td>' +
+                    '<td>' +
+                    '<div class="am-dropdown" data-am-dropdown>' +
+                    '<button class="commentDeleteBtn articleDelete am-btn am-btn-danger">删除</button>' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>'));
+            });
+        });
+        articleCommentTable.append($('<div class="my-row" id="page-father">' +
+            '<div id="articleManagementPagination">' +
+            '<ul class="am-pagination  am-pagination-centered">' +
+            '</ul>' +
+            '</div>' +
+            '</div>'));
+        $('.commentDeleteBtn').click(function () {
+            var $this = $(this);
+            var deleteCommentId = $this.parent().parent().parent().attr("id").substring(1);
+            deleteConfig = {type: 'deleteComment', deleteId: deleteCommentId};
+            $('#deleteAlter').modal('open');
+        })
+    }
+
+    //填充快递进程
+    function putInExpressInfo(data){
+        var categoryTimeline = $('.superAdminInfo .expressSite');
+        categoryTimeline.empty();
+        var timeline = $('<div class="timeline timeline-wrap"></div>');
+        timeline.append('<div class="timeline-row">' +
+            '<span class="node" style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;">' +
+            '<i class="fa fa-calendar"></i>' +
+            '</span>' +
+            '<h1 class="title  am-animation-slide-top"># 快递邮递进程 #</h1>' +
+            '</div>');
+        $.each(data['result'], function (index, obj) {
+            // timeline.append($('<div class="timeline-row-major">' +
+            //     '<span class="node am-animation-slide-top am-animation-delay-1"></span>' +
+            //     '<div class="nodeYear am-animation-slide-top am-animation-delay-1">' + obj['time'] + '</div>' +
+            //     '</div>'));
+            var timelineRowMajor = $('<div class="timeline-row-major"></div>');
+            timelineRowMajor.append($('<span class="node am-animation-slide-top am-animation-delay-1"></span>'));
+            var content = $('<div class="content am-comment-main am-animation-slide-top am-animation-delay-1"></div>');
+            content.append($('<header class="am-comment-hd" style="background: #fff">' +
+                '<div class="contentTitle am-comment-meta">' +
+                '<a>' + obj['time'] + '</a>' +
+                '</div>' +
+                '</header>'));
+            var amCommentBd = $('<div class="am-comment-bd"><p>'+ obj['context'] +'</p></div>');
+            content.append(amCommentBd);
+            timelineRowMajor.append(content);
+            timeline.append(timelineRowMajor);
+        });
+        categoryTimeline.append(timeline);
+
+    }
+
     $('.sureArticleDeleteBtn').click(function () {
+        if(deleteConfig){
+            if(deleteConfig['type'] == 'deleteArticle'){ // 删除文章
+                deleteArticle(deleteConfig['deleteId']);
+            }else if(deleteConfig['type'] == 'deleteComment'){ // 删除评论
+                deleteComment(deleteConfig['deleteId']);
+            }
+        }
+    });
+
+
+    // 删除文章方法
+    function deleteArticle(articleId) {
         $.ajax({
             type:'get',
             url:'/deleteArticle',
             dataType:'json',
             data:{
-                id:deleteArticleId
+                id:articleId
             },
             success:function (data) {
                 if(data == 0){
                     dangerNotice("删除文章失败")
                 } else {
                     successNotice("删除文章成功");
+                    getArticleComment(1);
+                }
+            },
+            error:function () {
+                alert("删除失败");
+            }
+        });
+    }
+
+    // 删除评论方法
+    function deleteComment(commentId) {
+        $.ajax({
+            type:'get',
+            url:'/deleteComment',
+            dataType:'json',
+            data:{
+                id:commentId
+            },
+            success:function (data) {
+                if(data == 0){
+                    dangerNotice("删除评论失败")
+                } else {
+                    successNotice("删除评论成功");
                     getArticleManagement(1);
                 }
             },
@@ -217,7 +319,7 @@
                 alert("删除失败");
             }
         });
-    })
+    }
 
     //获得反馈信息
     function getAllFeedback(currentPage) {
@@ -262,6 +364,7 @@
                 $('.yesterdayVisitor').html(data['yesterdayVisitor']);
                 $('.allUser').html(data['allUser']);
                 $('.articleNum').html(data['articleNum']);
+                $('#commentItem').html(data['commentNum']);
             },
             error:function () {
                 alert("获取统计信息失败");
@@ -299,6 +402,60 @@
         });
     }
 
+    //获得评论管理
+    function getArticleComment(currentPage) {
+        $.ajax({
+            type:'get',
+            url:'/getArticleComment',
+            dataType:'json',
+            data:{
+                rows:10,
+                pageNum:currentPage
+            },
+            success:function (data) {
+                // 填充页面信息
+                putInArticleCommnet(data);
+                scrollTo(0,0);//回到顶部
+
+                //分页
+                $("#articleManagementPagination").paging({
+                    rows:data['pageInfo']['pageSize'],//每页显示条数
+                    pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                    pages:data['pageInfo']['pages'],//总页数
+                    total:data['pageInfo']['total'],//总记录数
+                    callback:function(currentPage){
+                        getArticleManagement(currentPage);
+                    }
+                });
+            },
+            error:function () {
+                alert("获取文章信息失败");
+            }
+        });
+    }
+
+
+    //获得快递信息
+    function getExpressInfo(logisticsCode,logisticsNo) {
+        $.ajax({
+            type:'get',
+            url:'/getExpressInfo',
+            dataType:'json',
+            data:{
+                logisticsCode:logisticsCode,
+                logisticsNo:logisticsNo
+            },
+            success:function (data) {
+                putInExpressInfo(data);
+                scrollTo(0,0);//回到顶部
+            },
+            error:function () {
+                alert("获取快递信息失败");
+            }
+        });
+    }
+
+
     //点击悄悄话
     $('.superAdminList .privateWord').click(function () {
         $.ajax({
@@ -326,6 +483,17 @@
     //点击文章管理
     $('.superAdminList .articleManagement').click(function () {
         getArticleManagement(1);
+    });
+    //点击评论管理
+    $('.superAdminList .articleComment').click(function () {
+        getArticleComment(1);
+    });
+
+    //快递订单，点击查询
+    $('#expressSearch').click(function () {
+        var logisticsCode = $('#expressInfo #logisticsCode');
+        var logisticsNo = $('#expressInfo #logisticsNo');
+        getExpressInfo($.trim(logisticsCode.val()), $.trim(logisticsNo.val()));
     });
 
     getStatisticsInfo();

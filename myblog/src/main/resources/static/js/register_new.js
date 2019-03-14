@@ -201,13 +201,14 @@
             $.ajax({
                 type: 'post',
                 url: '/register_new',
-                dataType: 'json',
-                data: {
+                //dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify({
                     "phone":phone_value,
                     "username":username_value,
                     "password":password_value,
                     "gender":gender_value
-                },
+                }),
                 success: function (data) {
                     if(data == "0"){
                         auth_code_warn.css("display","block");
@@ -221,8 +222,8 @@
                         putIn();
                     }
                 },
-                error: function () {
-                    alert("fail");
+                error: function (e) {
+                    alert("fail: "+e.toString());
                 }
             })
         }

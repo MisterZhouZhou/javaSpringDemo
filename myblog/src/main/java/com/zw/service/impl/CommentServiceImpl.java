@@ -3,6 +3,7 @@ package com.zw.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zw.mapper.CommentMapper;
+import com.zw.model.Article;
 import com.zw.model.Comment;
 import com.zw.service.ArticleService;
 import com.zw.service.CommentLikesRecordService;
@@ -97,6 +98,11 @@ public class CommentServiceImpl implements CommentService {
         commentJsonObject.put("status",200);
         commentJsonArray.add(commentJsonObject);
         return commentJsonArray;
+    }
+
+    @Override
+    public List<Comment> findCommentByArticleId(long articleId) {
+        return commentMapper.findArticleComments(articleId);
     }
 
     @Override
@@ -233,6 +239,17 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteCommentByArticleId(long articleId) {
         commentMapper.deleteCommentByArticleId(articleId);
+    }
+
+    @Override
+    public int deleteCommentByCommentId(long commentId) {
+        try {
+            commentMapper.deleteCommentByCommentId(commentId);
+        }catch (Exception e){
+            logger.error("删除评论失败，评论id=" + commentId);
+            return 0;
+        }
+        return 1;
     }
 
 }

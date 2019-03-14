@@ -18,6 +18,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +54,7 @@ public class EditorController {
      * @param request httpServletRequest
      * @return
      */
+    @ApiIgnore
     @PostMapping("/publishArticle")
     @ResponseBody
     public JSONObject publishArticle(@AuthenticationPrincipal Principal principal,
@@ -125,6 +127,7 @@ public class EditorController {
      * @param principal
      * @return
      */
+    @ApiIgnore
     @GetMapping("/canYouWrite")
     @ResponseBody
     public int canYouWrite(@AuthenticationPrincipal Principal principal){
@@ -146,6 +149,7 @@ public class EditorController {
      * 获得所有的分类
      * @return
      */
+    @ApiIgnore
     @GetMapping("/findCategoriesName")
     @ResponseBody
     public JSONArray findCategoriesName(){
@@ -155,6 +159,7 @@ public class EditorController {
     /**
      * 获得是否有未发布的草稿文章或是修改文章
      */
+    @ApiIgnore
     @GetMapping("/getDraftArticle")
     @ResponseBody
     public JSONObject getDraftArticle(HttpServletRequest request){
@@ -190,6 +195,7 @@ public class EditorController {
     /**
      * 文章编辑本地上传图片
      */
+    @ApiIgnore
     @RequestMapping("/uploadImage")
     public @ResponseBody
     Map<String,Object> uploadImage(HttpServletRequest request, HttpServletResponse response,
