@@ -1,5 +1,7 @@
 package com.zw.controller;
 
+import com.zw.model.Categories;
+import com.zw.response.ResultBody;
 import com.zw.service.*;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -8,10 +10,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
@@ -36,9 +35,11 @@ public class SuperAdminController {
     ArticleService articleService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
-     * 获得所有悄悄话
+     * 获得所有悄悄话(供web使用)
      * @return
      */
     @ApiIgnore
@@ -49,7 +50,7 @@ public class SuperAdminController {
     }
 
     /**
-     * 回复悄悄话
+     * 回复悄悄话(供web使用)
      * @return
      */
     @ApiIgnore
@@ -71,7 +72,7 @@ public class SuperAdminController {
     }
 
     /**
-     * 分页获得所有反馈信息
+     * 分页获得所有反馈信息(供接口使用)
      * @param rows 一页大小
      * @param pageNum 当前页
      */
@@ -87,7 +88,7 @@ public class SuperAdminController {
     }
 
     /**
-     * 获得统计信息
+     * 获得统计信息(供接口使用)
      * @return
      */
     @ApiOperation(value="获得统计信息", notes="")
@@ -104,7 +105,7 @@ public class SuperAdminController {
     }
 
     /**
-     * 获得文章管理
+     * 获得文章管理(供web使用)
      * @return
      */
     @ApiIgnore
@@ -124,7 +125,7 @@ public class SuperAdminController {
     }
 
     /**
-     * 删除文章
+     * 删除文章(供web使用)
      * @param id 文章id
      * @return 1--删除成功   0--删除失败
      */
@@ -140,7 +141,7 @@ public class SuperAdminController {
 
 
     /**
-     * 根据评论id删除评论
+     * 根据评论id删除评论(供web使用)
      * @param id 评论id
      * @return 1--删除成功   0--删除失败
      */
@@ -157,7 +158,7 @@ public class SuperAdminController {
 
 
     /**
-     * 获得所有的文章及其评论内容
+     * 获得所有的文章及其评论内容(供web使用)
      * @return
      */
     @ApiIgnore
@@ -177,5 +178,65 @@ public class SuperAdminController {
     }
 
 
+    /**
+     * 获得所有的文章分类及文章数内容(供web使用)
+     * @return
+     */
+    @ApiIgnore
+    @GetMapping("/getArticleCategories")
+    public JSONObject getArticleCategories(@AuthenticationPrincipal Principal principal,
+                                        @RequestParam("rows") String rows,
+                                        @RequestParam("pageNum") String pageNum){
+        String username = null;
+        JSONObject returnJson = new JSONObject();
+        try {
+            username = principal.getName();
+        } catch (NullPointerException e){
+            returnJson.put("status",403);
+            return  returnJson;
+        }
+        return categoryService.getArticleCategories(Integer.parseInt(rows), Integer.parseInt(pageNum));
+    }
+
+
+    /**
+     * 添加文章分类(供web使用)
+     * @return
+     */
+    @ApiIgnore
+    @PostMapping("/addCategory")
+    public ResultBody addCategory(@AuthenticationPrincipal Principal principal,
+                                  @RequestBody Categories category){
+        String username = null;
+        ResultBody returnJson = new ResultBody();
+        try {
+            username = principal.getName();
+        } catch (NullPointerException e){
+            returnJson.setCode("403");
+            returnJson.setMessage("权限被拒绝");
+            return  returnJson;
+        }
+        int result = categoryService.insertCategory(category);
+        if (result == 0){
+            returnJson.setCode("500");
+            returnJson.setMessage("添加文章分类失败");
+        }
+        return returnJson;
+    }
+
+    /**
+     * 根据评论id删除文章分类(供web使用)
+     * @param id 文章分类id
+     * @return 1--删除成功   0--删除失败
+     */
+    @ApiIgnore
+    @GetMapping("/deleteCategory")
+    @PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+    public int deleteCategory(@RequestParam("id") String id){
+        if("".equals(id) || id == null){
+            return 0;
+        }
+        return categoryService.deleteCategory(Long.parseLong(id));
+    }
 
 }

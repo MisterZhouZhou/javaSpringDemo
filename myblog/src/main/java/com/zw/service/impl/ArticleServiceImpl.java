@@ -268,6 +268,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> findArticleByCategory(String category) {
+        return articleMapper.findArticleByCategory(category);
+    }
+
+    @Override
     public JSONObject findArticleByCategory(String category, int rows, int pageNum) {
         List<Article> articles;
         PageInfo<Article> pageInfo;

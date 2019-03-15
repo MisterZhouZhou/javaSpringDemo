@@ -6,8 +6,8 @@ package com.zw.response;
  * Created by bysocket on 14/03/2017.
  */
 public enum GlobalErrorInfoEnum implements ErrorInfoInterface{
-    SUCCESS("0", "success"),
-    NOT_FOUND("-1", "service not found");
+    SUCCESS("200", "success"),
+    NOT_FOUND("404", "service not found");
 
     private String code;
 

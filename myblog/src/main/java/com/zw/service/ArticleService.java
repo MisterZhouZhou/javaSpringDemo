@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,6 +77,13 @@ public interface ArticleService {
      * @return
      */
     JSONObject findArticleByTag(String tag, int rows, int pageNum);
+
+    /**
+     * 分页获得该分类下的所有文章
+     * @param category 分类名
+     * @return
+     */
+    List<Article> findArticleByCategory(String category);
 
     /**
      * 分页获得该分类下的所有文章

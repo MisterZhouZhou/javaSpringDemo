@@ -218,7 +218,7 @@
             });
         });
         articleCommentTable.append($('<div class="my-row" id="page-father">' +
-            '<div id="articleManagementPagination">' +
+            '<div id="articleCommnetPagination">' +
             '<ul class="am-pagination  am-pagination-centered">' +
             '</ul>' +
             '</div>' +
@@ -227,6 +227,35 @@
             var $this = $(this);
             var deleteCommentId = $this.parent().parent().parent().attr("id").substring(1);
             deleteConfig = {type: 'deleteComment', deleteId: deleteCommentId};
+            $('#deleteAlter').modal('open');
+        })
+    }
+
+    //填充文章分类管理
+    function putInArticleCategories(data) {
+        var articleCategoriesTable = $('.articleCategoriesTable');
+        articleCategoriesTable.empty();
+        $.each(data['result'], function (index, obj) {
+            articleCategoriesTable.append($('<tr id="a' + obj['categoryId'] + '"><td>' + obj['categoryName'] + '</td> <td><span class="am-badge am-badge-success">' + obj['categoryArticleNum'] + '</span></td>' +
+                '<td>' +
+                '<div class="am-dropdown" data-am-dropdown>' +
+                //'<button class="articleManagementBtn articleEditor am-btn am-btn-secondary">编辑</button>' +
+                '<button class="categoryDeleteBtn articleDelete am-btn am-btn-danger">删除</button>' +
+                '</div>' +
+                '</td>' +
+                '</tr>'));
+        });
+        articleCategoriesTable.append($('<div class="my-row" id="page-father">' +
+            '<div id="articleCategoriesPagination">' +
+            '<ul class="am-pagination  am-pagination-centered">' +
+            '</ul>' +
+            '</div>' +
+            '</div>'));
+
+        $('.categoryDeleteBtn').click(function () {
+            var $this = $(this);
+            var deleteCategoryId = $this.parent().parent().parent().attr("id").substring(1);
+            deleteConfig = {type: 'deleteCategory', deleteId: deleteCategoryId};
             $('#deleteAlter').modal('open');
         })
     }
@@ -270,6 +299,8 @@
                 deleteArticle(deleteConfig['deleteId']);
             }else if(deleteConfig['type'] == 'deleteComment'){ // 删除评论
                 deleteComment(deleteConfig['deleteId']);
+            }else if(deleteConfig['type'] == 'deleteCategory'){ // 删除文章分类
+                deleteCategory(deleteConfig['deleteId']);
             }
         }
     });
@@ -321,6 +352,29 @@
         });
     }
 
+    // 删除文章分类
+    function deleteCategory(categoryId) {
+        $.ajax({
+            type:'get',
+            url:'/deleteCategory',
+            dataType:'json',
+            data:{
+                id:categoryId
+            },
+            success:function (data) {
+                if(data == 0){
+                    dangerNotice("删除文章分类失败")
+                } else {
+                    successNotice("删除文章分类成功");
+                    getArticleManagement(1);
+                }
+            },
+            error:function () {
+                alert("删除失败");
+            }
+        });
+    }
+
     //获得反馈信息
     function getAllFeedback(currentPage) {
         $.ajax({
@@ -351,6 +405,7 @@
             }
         });
     }
+
     //获取统计信息
     function getStatisticsInfo() {
         $.ajax({
@@ -371,6 +426,7 @@
             }
         });
     }
+
     //获得文章管理文章
     function getArticleManagement(currentPage) {
         $.ajax({
@@ -386,7 +442,7 @@
                 scrollTo(0,0);//回到顶部
 
                 //分页
-                $("#articleManagementPagination").paging({
+                $("#articleCommnetPagination").paging({
                     rows:data['pageInfo']['pageSize'],//每页显示条数
                     pageNum:data['pageInfo']['pageNum'],//当前所在页码
                     pages:data['pageInfo']['pages'],//总页数
@@ -418,7 +474,7 @@
                 scrollTo(0,0);//回到顶部
 
                 //分页
-                $("#articleManagementPagination").paging({
+                $("#articleCommnetPagination").paging({
                     rows:data['pageInfo']['pageSize'],//每页显示条数
                     pageNum:data['pageInfo']['pageNum'],//当前所在页码
                     pages:data['pageInfo']['pages'],//总页数
@@ -434,6 +490,37 @@
         });
     }
 
+    // 获取文章分类信息
+    function getArticleCategoriesInfo(currentPage) {
+        $.ajax({
+            type:'get',
+            url:'/getArticleCategories',
+            dataType:'json',
+            data:{
+                rows:10,
+                pageNum:currentPage
+            },
+            success:function (data) {
+                // 填充页面信息
+                putInArticleCategories(data);
+                scrollTo(0,0);//回到顶部
+
+                //分页
+                $("#articleCategoriesPagination").paging({
+                    rows:data['pageInfo']['pageSize'],//每页显示条数
+                    pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                    pages:data['pageInfo']['pages'],//总页数
+                    total:data['pageInfo']['total'],//总记录数
+                    callback:function(currentPage){
+                        getArticleCategoriesInfo(currentPage);
+                    }
+                });
+            },
+            error:function () {
+                alert("获取文章信息失败");
+            }
+        });
+    }
 
     //获得快递信息
     function getExpressInfo(logisticsCode,logisticsNo) {
@@ -451,6 +538,30 @@
             },
             error:function () {
                 alert("获取快递信息失败");
+            }
+        });
+    }
+
+    // 添加文章分类
+    function addCategoryInfo(categoryName){
+        $.ajax({
+            type: 'post',
+            url: '/addCategory',
+            //dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify({
+                "categoryName":categoryName
+            }),
+            success: function (data) {
+                if(data['code'] == 200){
+                    successNotice("添加文章类别成功");
+                    getArticleComment(1);
+                }else{
+                    dangerNotice("添加文章类别失败")
+                }
+            },
+            error: function (e) {
+                alert("fail: "+e.toString());
             }
         });
     }
@@ -476,17 +587,25 @@
             }
         });
     });
+
     //点击反馈
     $('.superAdminList .userFeedback').click(function () {
         getAllFeedback(1);
     });
+
     //点击文章管理
     $('.superAdminList .articleManagement').click(function () {
         getArticleManagement(1);
     });
+
     //点击评论管理
     $('.superAdminList .articleComment').click(function () {
         getArticleComment(1);
+    });
+
+    //点击文章分类管理
+    $('.superAdminList .articleCategories').click(function () {
+        getArticleCategoriesInfo(1);
     });
 
     //快递订单，点击查询
@@ -495,6 +614,13 @@
         var logisticsNo = $('#expressInfo #logisticsNo');
         getExpressInfo($.trim(logisticsCode.val()), $.trim(logisticsNo.val()));
     });
+
+    // 添加文章分类
+    $('#addCategory_btn').click(function () {
+        var category = $('#category_name');
+        addCategoryInfo($.trim(category.val()));
+    });
+
 
     getStatisticsInfo();
 
