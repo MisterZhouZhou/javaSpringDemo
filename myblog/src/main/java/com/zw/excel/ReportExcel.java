@@ -30,8 +30,8 @@ public class ReportExcel {
      * @throws IOException
      */
     public void excelExport(List list, String title, Class className, Integer exportType, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        //OutputStream out = response.getOutputStream();
-        FileOutputStream out = new FileOutputStream("./didispace-excel/workbook.xls");
+        OutputStream out = response.getOutputStream();
+        //FileOutputStream out = new FileOutputStream("./didispace-excel/workbook.xls");
         try {
             ExcelUtil excel = new ExcelUtil();
             if(list!=null && list.size()>ExcelUtil.EXPORT_07_LEAST_SIZE){
