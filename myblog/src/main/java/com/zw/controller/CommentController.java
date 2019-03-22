@@ -1,5 +1,7 @@
 package com.zw.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zw.component.JavaScriptCheck;
 import com.zw.constant.SiteOwner;
 import com.zw.model.Comment;
@@ -9,8 +11,6 @@ import com.zw.service.CommentService;
 import com.zw.service.UserService;
 import com.zw.utils.TimeUtil;
 import com.zw.utils.TransCodingUtil;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

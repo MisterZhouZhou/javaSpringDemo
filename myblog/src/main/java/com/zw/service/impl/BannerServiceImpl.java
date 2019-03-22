@@ -1,10 +1,11 @@
 package com.zw.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zw.mapper.BannerMapper;
 import com.zw.model.Banner;
 import com.zw.service.BannerService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class BannerServiceImpl implements BannerService {
         bannerMapper.insertBanner(banner);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status",200);
-        jsonObject.put("result",JSONArray.fromObject(banner));
+        jsonObject.put("result",JSONArray.parseArray(JSON.toJSONString(banner)));
         return jsonObject;
     }
 

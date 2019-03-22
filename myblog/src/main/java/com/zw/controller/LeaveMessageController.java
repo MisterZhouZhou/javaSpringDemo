@@ -1,5 +1,6 @@
 package com.zw.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zw.component.JavaScriptCheck;
 import com.zw.model.LeaveMessage;
 import com.zw.model.LeaveMessageLikesRecord;
@@ -7,7 +8,6 @@ import com.zw.service.LeaveMessageLikesRecordService;
 import com.zw.service.LeaveMessageService;
 import com.zw.service.UserService;
 import com.zw.utils.TimeUtil;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

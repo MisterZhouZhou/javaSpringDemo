@@ -3,7 +3,7 @@
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#friendLink,#userFeedback,#privateWord,#expressInfo').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo').css("display","none");
         $("#" + flag).css("display","block");
     });
 
@@ -290,7 +290,22 @@
             timeline.append(timelineRowMajor);
         });
         categoryTimeline.append(timeline);
+    }
 
+
+    //填充excel信息
+    function putInExcelProducts(data) {
+        var excelsTable = $('.excelsTable');
+        excelsTable.empty();
+        $.each(data['data'], function (index, obj) {
+            excelsTable.append($('<tr><td>' + obj['name'] + '</td><td>' + obj['price'] + '</td> <td><span class="am-badge am-badge-success">' + obj['date']  + '</span></td></tr>'));
+        });
+        excelsTable.append($('<div class="my-row" id="page-father">' +
+            '<div id="excelsPagination">' +
+            '<ul class="am-pagination  am-pagination-centered">' +
+            '</ul>' +
+            '</div>' +
+            '</div>'));
     }
 
     $('.sureArticleDeleteBtn').click(function () {
@@ -442,7 +457,7 @@
                 scrollTo(0,0);//回到顶部
 
                 //分页
-                $("#articleCommnetPagination").paging({
+                $("#articleManagementPagination").paging({
                     rows:data['pageInfo']['pageSize'],//每页显示条数
                     pageNum:data['pageInfo']['pageNum'],//当前所在页码
                     pages:data['pageInfo']['pages'],//总页数
@@ -566,6 +581,71 @@
         });
     }
 
+    // 获取excel信息
+    function getExcelInfo(currentPage) {
+        $.ajax({
+            type:'get',
+            url:'/excel/getProducts',
+            dataType:'json',
+            data:{
+                rows:10,
+                pageNum:currentPage
+            },
+            success:function (result) {
+                var data = result['result'];
+                // 填充页面信息
+                putInExcelProducts(data);
+                scrollTo(0,0);//回到顶部
+
+                //分页
+                $("#excelsPagination").paging({
+                    rows:data['pageInfo']['pageSize'],//每页显示条数
+                    pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                    pages:data['pageInfo']['pages'],//总页数
+                    total:data['pageInfo']['total'],//总记录数
+                    callback:function(currentPage){
+                        getExcelInfo(currentPage);
+                    }
+                });
+            },
+            error:function () {
+                alert("获取excel信息失败");
+            }
+        });
+    }
+
+    // 获取车辆信息
+    function getCarInfo(currentPage) {
+        $.ajax({
+            type:'get',
+            url:'/excel/getProducts',
+            dataType:'json',
+            data:{
+                rows:10,
+                pageNum:currentPage
+            },
+            success:function (result) {
+                var data = result['result'];
+                // 填充页面信息
+                putInExcelProducts(data);
+                scrollTo(0,0);//回到顶部
+
+                //分页
+                $("#excelsPagination").paging({
+                    rows:data['pageInfo']['pageSize'],//每页显示条数
+                    pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                    pages:data['pageInfo']['pages'],//总页数
+                    total:data['pageInfo']['total'],//总记录数
+                    callback:function(currentPage){
+                        getExcelInfo(currentPage);
+                    }
+                });
+            },
+            error:function () {
+                alert("获取excel信息失败");
+            }
+        });
+    }
 
     //点击悄悄话
     $('.superAdminList .privateWord').click(function () {
@@ -608,19 +688,29 @@
         getArticleCategoriesInfo(1);
     });
 
-    //快递订单，点击查询
-    $('#expressSearch').click(function () {
-        var logisticsCode = $('#expressInfo #logisticsCode');
-        var logisticsNo = $('#expressInfo #logisticsNo');
-        getExpressInfo($.trim(logisticsCode.val()), $.trim(logisticsNo.val()));
+    // excel 入口点击事件
+    $('.superAdminList .excelInfo').click(function () {
+        getExcelInfo(1);
     });
 
+    // 车辆信息 入口点击事件
+    $('.superAdminList .carInfo').click(function () {
+        getExcelInfo(1);
+    });
+
+    // 右侧点击事件----------------------------------------------
     // 添加文章分类
     $('#addCategory_btn').click(function () {
         var category = $('#category_name');
         addCategoryInfo($.trim(category.val()));
     });
 
+    //快递订单，点击查询
+    $('#expressSearch').click(function () {
+        var logisticsCode = $('#expressInfo #logisticsCode');
+        var logisticsNo = $('#expressInfo #logisticsNo');
+        getExpressInfo($.trim(logisticsCode.val()), $.trim(logisticsNo.val()));
+    });
 
     getStatisticsInfo();
 

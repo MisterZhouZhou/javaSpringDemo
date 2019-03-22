@@ -1,7 +1,7 @@
 package com.zw.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zw.model.User;
-import net.sf.json.JSONObject;
 import org.springframework.transaction.annotation.Transactional;
 
 /**

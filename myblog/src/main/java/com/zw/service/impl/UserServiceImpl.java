@@ -4,7 +4,7 @@ import com.zw.constant.RoleConstant;
 import com.zw.mapper.UserMapper;
 import com.zw.model.User;
 import com.zw.service.UserService;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

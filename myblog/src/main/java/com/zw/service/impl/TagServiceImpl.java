@@ -3,8 +3,8 @@ package com.zw.service.impl;
 import com.zw.mapper.TagMapper;
 import com.zw.model.Tag;
 import com.zw.service.TagService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class TagServiceImpl implements TagService {
         List<Tag> tags = tagMapper.findTagsCloud();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status",200);
-        jsonObject.put("result",JSONArray.fromObject(tags));
+        jsonObject.put("result",JSONArray.toJSON(tags));
         jsonObject.put("tagsNum",tags.size());
         return jsonObject;
     }

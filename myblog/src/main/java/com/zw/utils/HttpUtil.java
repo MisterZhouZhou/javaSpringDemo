@@ -1,6 +1,6 @@
 package com.zw.utils;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -32,7 +32,7 @@ public class HttpUtil {
             CloseableHttpResponse response = client.execute(httpPost);
             if(response.getStatusLine().getStatusCode() == 200) {
                 String result = EntityUtils.toString(response.getEntity(),"UTF-8"); // 返回json格式
-                respContent = JSONObject.fromObject(result);
+                respContent = JSONObject.parseObject(result);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class HttpUtil {
             CloseableHttpResponse response = httpclient.execute(httpGet);
             if(response.getStatusLine().getStatusCode()==200){
                 String result = EntityUtils.toString(response.getEntity(),"utf-8");
-                contentObject = JSONObject.fromObject(result);
+                contentObject = JSONObject.parseObject(result);
             }
         }catch (ClientProtocolException e){
             e.printStackTrace();

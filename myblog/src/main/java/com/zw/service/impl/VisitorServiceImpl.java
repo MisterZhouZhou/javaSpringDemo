@@ -2,7 +2,7 @@ package com.zw.service.impl;
 
 import com.zw.mapper.VisitorMapper;
 import com.zw.service.VisitorService;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

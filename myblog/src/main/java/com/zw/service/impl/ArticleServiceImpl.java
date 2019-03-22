@@ -1,5 +1,8 @@
 package com.zw.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zw.component.StringAndArray;
@@ -8,8 +11,6 @@ import com.zw.model.Article;
 import com.zw.model.Comment;
 import com.zw.service.*;
 import com.zw.utils.TimeUtil;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,7 +199,7 @@ public class ArticleServiceImpl implements ArticleService {
             map.put("likes", article.getLikes());
             newArticles.add(map);
         }
-        JSONArray jsonArray = JSONArray.fromObject(newArticles);
+        JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(newArticles));
         Map<String, Object> thisPageInfo = new HashMap<>();
         thisPageInfo.put("pageNum",pageInfo.getPageNum());
         thisPageInfo.put("pageSize",pageInfo.getPageSize());

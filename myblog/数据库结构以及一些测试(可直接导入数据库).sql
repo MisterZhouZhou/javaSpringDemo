@@ -335,3 +335,52 @@ INSERT INTO `banner` VALUES (1,'告诉自己，明天，肯定会更好'),(2,'�
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+
+
+DROP TABLE IF EXISTS `car`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `car` (
+  `carCategoriesId` int(11) NOT NULL,
+  `carName` varchar(45) DEFAULT NULL,
+  `carLength` double(5,0) DEFAULT NULL,
+  `carColor` varchar(45) DEFAULT NULL,
+  `carPrice` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`carCategoriesId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car`
+--
+
+LOCK TABLES `car` WRITE;
+/*!40000 ALTER TABLE `car` DISABLE KEYS */;
+INSERT INTO `car` VALUES (1,'奥迪A3',5,'红色、黑色、白色','19.10-25.62');
+/*!40000 ALTER TABLE `car` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+
+DROP TABLE IF EXISTS `car_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `car_categories` (
+  `id` int(11) NOT NULL,
+  `carCategoriesName` varchar(45) DEFAULT NULL,
+  `carCategoriesIcon` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car_categories`
+--
+
+LOCK TABLES `car_categories` WRITE;
+/*!40000 ALTER TABLE `car_categories` DISABLE KEYS */;
+INSERT INTO `car_categories` VALUES (1,'奥迪','https://car2.autoimg.cn/cardfs/series/g26/M0B/AE/B3/100x100_f40_autohomecar__wKgHEVs9u5WAV441AAAKdxZGE4U148.png');
+/*!40000 ALTER TABLE `car_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

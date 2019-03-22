@@ -1,5 +1,6 @@
 package com.zw.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zw.mapper.CategoryMapper;
@@ -9,8 +10,8 @@ import com.zw.model.Comment;
 import com.zw.model.CommentLikesRecord;
 import com.zw.response.ResultBody;
 import com.zw.service.*;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,7 +92,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public JSONArray findCategoriesName() {
         List<String> categoryNames = categoryMapper.findCategoriesName();
-        return JSONArray.fromObject(categoryNames);
+        return JSONArray.parseArray(JSON.toJSONString(categoryNames));
     }
 
     @Override

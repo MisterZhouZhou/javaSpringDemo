@@ -14,7 +14,7 @@
             phone_null.show();
         }
         if(phone_len !== 0){
-            var pattren = /^1[345789]\d{9}$/;
+            var pattren = /^1[3456789]\d{9}$/;
             var phone_value = phone.val();
             if(!pattren.test(phone_value)){
                 phone_error.show();

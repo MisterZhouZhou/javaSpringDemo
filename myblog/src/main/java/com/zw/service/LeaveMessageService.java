@@ -1,7 +1,7 @@
 package com.zw.service;
 
 import com.zw.model.LeaveMessage;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

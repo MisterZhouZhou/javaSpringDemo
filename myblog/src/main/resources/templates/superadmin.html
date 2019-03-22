@@ -90,6 +90,8 @@
                 <li class="superAdminClick userFeedback"><a><span class="am-icon-table"></span> 反馈</a></li>
                 <li class="superAdminClick privateWord" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 悄悄话</a></li>
                 <li class="superAdminClick expressInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 快递查询入口</a></li>
+                <li class="superAdminClick excelInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> excel入口</a></li>
+                <li class="superAdminClick carInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 车辆品牌信息入口</a></li>
             </ul>
 
             <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -219,6 +221,55 @@
                         <input type="submit" id="expressSearch" value="查 询" class="am-btn am-btn-primary am-btn-lg am-fl" style="border-radius: 5px;">
                     </div>
                     <div class="expressSite am-u-lg-10" style="padding-top: 40px;float:left;"></div>
+                </div>
+            </div>
+            <div class="superFunction" id="excelInfo">
+                <div class="subject">
+                    <h4>excel信息</h4>
+                    <div class="am-input-group am-u-lg-4" style="margin-left: 0">
+                        <a href="/excel/exportProduct" class="am-btn am-btn-primary am-btn-lg am-fl" style="border-radius: 5px;margin: 20px 0px 20px 0px;">导出excel</a>
+                    </div>
+                    <div class="excels">
+                        <div class="am-g">
+                            <div class="am-u-sm-12">
+                                <table class="am-table am-table-bd am-table-striped admin-content-table">
+                                    <thead>
+                                    <tr>
+                                        <th>产品名称</th><th>产品价格</th><th>生产日期</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="excelsTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="superFunction" id="carInfo">
+                <div class="subject">
+                    <h4>车辆信息信息</h4>
+                    <div class="excels">
+                        <div class="am-g">
+                            <div class="am-u-sm-12">
+                                <ul class="superAdminList am-list car-list">
+                                    <li class="admin-parent">
+                                        <a class="am-cf" data-am-collapse="{target: '#car-nav'}">
+                                            <div style="display: inline-flex;align-items:center;">
+                                                <img src="https://avatar.csdn.net/D/B/C/3_tingzhiyi.jpg" />
+                                                <span style="margin-left: 10px;">宝马</span>
+                                                <span class="am-icon-angle-right am-fr am-margin-right car-arrow"></span>
+                                            </div>
+                                        </a>
+                                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="car-nav">
+                                            <li>宝马A4</li>
+                                            <li>宝马A5</li>
+                                            <li>宝马A6</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

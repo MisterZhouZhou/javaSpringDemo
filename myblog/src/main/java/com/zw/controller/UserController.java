@@ -1,5 +1,6 @@
 package com.zw.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zw.model.User;
 import com.zw.service.CommentService;
 import com.zw.service.LeaveMessageService;
@@ -9,7 +10,6 @@ import com.zw.utils.FileUtil;
 import com.zw.utils.TimeUtil;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -150,7 +150,7 @@ public class ExcelUtil<T> {
                     hCell = hRow.createCell((short) i);
                     if (result != null) {
                         if (result.getClass().isAssignableFrom(Date.class)) {
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:dd:ss");
                             result = format.format(result);
                         }
                         hCell.setCellValue(new HSSFRichTextString(result.toString()));
