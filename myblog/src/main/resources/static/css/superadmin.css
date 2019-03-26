@@ -149,13 +149,13 @@
 .articleManagementBtn{
     padding: 6px;
 }
-.articles td,th{
-    border: 1px solid #eceff2;
-}
-.articles table{
-    border-collapse: collapse;
-    border: 1px solid #eceff2;
-}
+/*.articles td,th{*/
+    /*border: 1px solid #eceff2;*/
+/*}*/
+/*.articles table{*/
+    /*border-collapse: collapse;*/
+    /*border: 1px solid #eceff2;*/
+/*}*/
 .articleManagementBtn{
     margin-right: 10px;
 }
@@ -164,23 +164,43 @@
     margin-top: 30px;
 }
 
-.excels td,th{
-    border: 1px solid #eceff2;
-}
-.excels table{
-    border-collapse: collapse;
-    border: 1px solid #eceff2;
-}
+/*.excels td,th{*/
+    /*border: 1px solid #eceff2;*/
+/*}*/
+/*.excels table{*/
+    /*border-collapse: collapse;*/
+    /*border: 1px solid #eceff2;*/
+/*}*/
 
 
 /*  汽车信息  */
 .car-list li a {
     color: #5c5c5c;
     border: 1px solid lightgray;
-    background-color: #ececec;
+    /*background-color: #ececec;*/
 }
 
 .car-arrow {
     position: absolute;
     right: 10px;
+}
+
+.car-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.car-item img{
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+td,th{
+    border: 1px solid #eceff2;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid #eceff2;
 }

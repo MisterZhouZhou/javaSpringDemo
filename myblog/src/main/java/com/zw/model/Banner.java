@@ -14,6 +14,9 @@ public class Banner {
     @ApiModelProperty(value = "banner标题")
     private String bannerName;
 
+    @ApiModelProperty(value = "banner是否显示")
+    private boolean show;
+
     public int getId() {
         return id;
     }
@@ -28,5 +31,13 @@ public class Banner {
 
     public void setBannerName(String bannerName) {
         this.bannerName = bannerName;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 }

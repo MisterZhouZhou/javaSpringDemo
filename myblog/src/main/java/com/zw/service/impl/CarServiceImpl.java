@@ -18,8 +18,19 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
 
     @Override
-    public List<Car> findCarsByCarCategoriesId(int carCategoriesId) {
-        return carMapper.findCarsByCarCategoriesId(carCategoriesId);
+    public List<Car> findCarsByCarCategoryId(int carCategoryId) {
+        return carMapper.findCarsByCarCategoryId(carCategoryId);
+    }
+
+    @Override
+    public int insertCar(Car car) {
+        try {
+            carMapper.insertCar(car);
+            return 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 }

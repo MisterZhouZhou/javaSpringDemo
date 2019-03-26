@@ -13,7 +13,7 @@ public interface ArticleLikesRecordService {
 
     /**
      * 文章是否已经点过赞
-     * @param articledId 文章id
+     * @param articleId 文章id
      * @param originalAuthor 原作者
      * @param username 点赞人
      * @return true--已经点过赞  false--没有点赞

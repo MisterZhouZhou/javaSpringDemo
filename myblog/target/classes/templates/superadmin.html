@@ -80,10 +80,17 @@
                 <li class="superAdminClick statistics"><a><span class="am-icon-home"></span> 仪表盘</a></li>
                 <li class="article admin-parent">
                     <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 文章管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav">
                         <li class="superAdminClick articleManagement"><a class="am-cf"><span class="am-icon-check"></span> 文章管理<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
                         <li class="superAdminClick articleComment"><a><span class="am-icon-puzzle-piece"></span> 评论管理<span class="am-badge am-badge-secondary am-margin-right am-fr" id="commentItem">0</span></a></li>
                         <li class="superAdminClick articleCategories"><a><span class="am-icon-th"></span> 分类管理</a></li>
+                    </ul>
+                </li>
+                <li class="banner admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#banner-nav'}"><span class="am-icon-file"></span> 轮播管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="banner-nav">
+                        <li class="superAdminClick bannerAdd"><a class="am-cf"><span class="am-icon-puzzle-piece"></span> 添加轮播消息</a></li>
+                        <li class="superAdminClick bannerManagement"><a class="am-cf"><span class="am-icon-puzzle-piece"></span> 轮播消息管理</a></li>
                     </ul>
                 </li>
                 <li class="superAdminClick friendLink"><a><span class="am-icon-users"></span> 友链管理</a></li>
@@ -185,6 +192,37 @@
                     </div>
                 </div>
             </div>
+            <div class="superFunction" id="bannerAdd">
+                <div class="site-inner" style="margin-bottom: 50px;">
+                    <h4>添加轮播消息</h4>
+                    <div class="am-u-lg-12 am-u-sm-centered">
+                        <label for="category_name" style="margin-top: 6px">banner标题:</label>
+                        <input style="width: 45%;border: 1px solid lightgray;margin-left: 20px;height: 40px;" type="text" name="phone" id="banner_name" placeholder="请输入banner标题">
+                        <button type="button" id="addBanner_btn" class="am-btn am-btn-secondary am-round" style="margin-left: 20px;">添加Banner</button>
+                    </div>
+                </div>
+            </div>
+            <div class="superFunction" id="bannerManagement">
+                <div class="subject">
+                    <h4>轮播消息管理</h4>
+                    <div class="banners" style="margin-top: 30px;">
+                        <div class="am-g">
+                            <div class="am-u-sm-12">
+                                <table class="am-table am-table-bd am-table-striped admin-content-table">
+                                    <thead>
+                                    <tr>
+                                        <th>轮播消息标题</th><th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bannerManagementTable">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="superFunction" id="friendLink">
                 <div class="site-inner">
                     5
@@ -248,24 +286,11 @@
             <div class="superFunction" id="carInfo">
                 <div class="subject">
                     <h4>车辆信息信息</h4>
-                    <div class="excels">
+                    <div style="margin-top: 30px;">
                         <div class="am-g">
                             <div class="am-u-sm-12">
                                 <ul class="superAdminList am-list car-list">
-                                    <li class="admin-parent">
-                                        <a class="am-cf" data-am-collapse="{target: '#car-nav'}">
-                                            <div style="display: inline-flex;align-items:center;">
-                                                <img src="https://avatar.csdn.net/D/B/C/3_tingzhiyi.jpg" />
-                                                <span style="margin-left: 10px;">宝马</span>
-                                                <span class="am-icon-angle-right am-fr am-margin-right car-arrow"></span>
-                                            </div>
-                                        </a>
-                                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="car-nav">
-                                            <li>宝马A4</li>
-                                            <li>宝马A5</li>
-                                            <li>宝马A6</li>
-                                        </ul>
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>

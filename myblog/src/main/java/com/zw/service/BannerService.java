@@ -15,7 +15,7 @@ public interface BannerService {
      * 添加banner
      * @param banner
      */
-    JSONObject addBanner(Banner banner);
+    int addBanner(Banner banner);
 
     /**
      * 获得所有的banner
@@ -24,8 +24,20 @@ public interface BannerService {
     List<Banner> findBanners();
 
     /**
+     * 查找banner
+     * @return
+     */
+    Banner findBannerById(int bannerId);
+
+    /**
      * 获得banner数目
      * @return
      */
     int countBannersNum();
+
+    /**
+     * 更新banner
+     * @return
+     */
+    int updateBannerByBanner(Banner banner);
 }

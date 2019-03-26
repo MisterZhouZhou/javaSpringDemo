@@ -15,6 +15,12 @@ public interface CarService {
      * 根据车辆分类id获得所有的车辆信息
      * @return
      */
-    List<Car> findCarsByCarCategoriesId(int carCategoriesId);
+    List<Car> findCarsByCarCategoryId(int carCategoryId);
+
+    /**
+     * 添加车辆信息
+     * @return 1->成功 0->失败
+     */
+    int insertCar(Car car);
 
 }

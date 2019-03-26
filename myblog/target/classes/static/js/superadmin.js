@@ -3,7 +3,7 @@
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd').css("display","none");
         $("#" + flag).css("display","block");
     });
 
@@ -260,6 +260,37 @@
         })
     }
 
+    // 填充轮播信息
+    function putInBanner(data) {
+        var bannerManagementTable = $('.bannerManagementTable');
+        bannerManagementTable.empty();
+        $.each(data['result'], function (index, obj) {
+            var operationTitle = obj['show'] ? '不显示' : '显示';
+            bannerManagementTable.append($('<tr id="a' + obj['id'] + '"><td>' + obj['bannerName'] + '</td>' +
+                '<td>' +
+                '<div class="am-dropdown" data-am-dropdown>' +
+                '<button class="bannerShowHideBtn am-btn am-btn-danger">'+ operationTitle +'</button>' +
+                '</div>' +
+                '</td>' +
+                '</tr>'));
+        });
+        // bannerManagementTable.append($('<div class="my-row" id="page-father">' +
+        //     '<div id="bannerManagementPagination">' +
+        //     '<ul class="am-pagination  am-pagination-centered">' +
+        //     '</ul>' +
+        //     '</div>' +
+        //     '</div>'));
+
+
+        $('.bannerShowHideBtn').click(function () {
+            var $this = $(this);
+            var bannerId = $this.parent().parent().parent().attr("id").substring(1);
+            // 更改后的状态值
+            var isShow = this.innerText == '显示' ? 1: 0;
+            updateBanner(bannerId, isShow);
+        });
+    }
+
     //填充快递进程
     function putInExpressInfo(data){
         var categoryTimeline = $('.superAdminInfo .expressSite');
@@ -308,6 +339,46 @@
             '</div>'));
     }
 
+    //填充车辆信息
+    function putInCarInfo(data) {
+        var carUlComponent = $('.car-list');
+        carUlComponent.empty();
+        $.each(data, function (index, carCategory) {
+            var itemList='';
+            $.each(carCategory['cars'], function (index, carInfo) {
+                itemList +='<li>' +
+                        '<div>' +
+                            '<span style="margin-left: 10px;">车辆名称：'+carInfo['carName']+'</span>'+
+                            '<span style="margin-left: 10px;">车辆长度：'+carInfo['carLength']+'</span>'+
+                            '<span style="margin-left: 10px;">车辆颜色：'+carInfo['carColor']+'</span>'+
+                            '<span style="margin-left: 10px;">车辆价格范围：'+carInfo['carPrice']+'</span>'+
+                        '</div>' +
+                    '</li>';
+
+            });
+
+            carUlComponent.append($(
+                '<li class="admin-parent">'+
+                    '<a class="am-cf" data-am-collapse="{target: \'#car-nav'+index+'\'}">'+
+                        '<div class="car-item">'+
+                            '<img src="'+carCategory['carCategoryIcon']+'" />'+
+                            '<span style="margin-left: 10px;">'+carCategory['carCategoryName']+'</span>'+
+                            '<span style="margin-left: 10px;">'+carCategory['carCategoryPrice']+'</span>'+
+                            '<span class="am-icon-angle-right am-fr am-margin-right car-arrow"></span>'+
+                        '</div>'+
+                    '</a>'+
+                    '<ul class="am-list am-collapse admin-sidebar-sub" id="car-nav'+index+'">'+ itemList +'</ul>'+
+                '</li>'
+            ));
+        });
+        carUlComponent.append($('<div class="my-row" id="page-father">' +
+            '<div id="carInfoPagination">' +
+            '<ul class="am-pagination  am-pagination-centered">' +
+            '</ul>' +
+            '</div>' +
+            '</div>'));
+    }
+
     $('.sureArticleDeleteBtn').click(function () {
         if(deleteConfig){
             if(deleteConfig['type'] == 'deleteArticle'){ // 删除文章
@@ -320,6 +391,30 @@
         }
     });
 
+    // ---------------------------------------------- 接口 ----------------------------------------------
+    // 更新banner信息
+    function updateBanner(bannerId, isShow) {
+        $.ajax({
+            type:'post',
+            url:'/updateBanner',
+            contentType: "application/json",
+            data:JSON.stringify({
+                id:bannerId,
+                show: isShow
+            }),
+            success:function (data) {
+                if(data == 0){
+                    alert('更新banner状态失败');
+                } else {
+                    // 刷新状态
+                    getBannerManagement();
+                }
+            },
+            error:function (error) {
+                alert("更新banner状态失败");
+            }
+        });
+    }
 
     // 删除文章方法
     function deleteArticle(articleId) {
@@ -537,6 +632,38 @@
         });
     }
 
+    //获得轮播消息信息
+    function getBannerManagement() {
+        $.ajax({
+            type:'get',
+            url:'/getBanners',
+            dataType:'json',
+            // data:{
+            //     rows:10,
+            //     pageNum:currentPage
+            // },
+            success:function (data) {
+                // 填充页面信息
+                putInBanner(data);
+                scrollTo(0,0);//回到顶部
+
+                // //分页
+                // $("#articleCategoriesPagination").paging({
+                //     rows:data['pageInfo']['pageSize'],//每页显示条数
+                //     pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                //     pages:data['pageInfo']['pages'],//总页数
+                //     total:data['pageInfo']['total'],//总记录数
+                //     callback:function(currentPage){
+                //         getArticleCategoriesInfo(currentPage);
+                //     }
+                // });
+            },
+            error:function () {
+                alert("获取轮播信息失败");
+            }
+        });
+    }
+
     //获得快递信息
     function getExpressInfo(logisticsCode,logisticsNo) {
         $.ajax({
@@ -566,6 +693,29 @@
             contentType: "application/json",
             data: JSON.stringify({
                 "categoryName":categoryName
+            }),
+            success: function (data) {
+                if(data['code'] == 200){
+                    successNotice("添加文章类别成功");
+                    getArticleComment(1);
+                }else{
+                    dangerNotice("添加文章类别失败")
+                }
+            },
+            error: function (e) {
+                alert("fail: "+e.toString());
+            }
+        });
+    }
+
+    // 添加banner
+    function addBannerInfo(bannerName){
+        $.ajax({
+            type: 'post',
+            url: '/addBanner',
+            contentType: "application/json",
+            data: JSON.stringify({
+                "bannerName":bannerName
             }),
             success: function (data) {
                 if(data['code'] == 200){
@@ -614,6 +764,40 @@
         });
     }
 
+    // 获取车辆信息
+    function getCarInfo(currentPage) {
+        $.ajax({
+            type:'get',
+            url:'/carInfo/getCarsInfos',
+            dataType:'json',
+            data:{
+                rows:10,
+                pageNum:currentPage
+            },
+            success:function (result) {
+                var data = result['result'];
+                // 填充页面信息
+                putInCarInfo(data['data']);
+                scrollTo(0,0);//回到顶部
+
+                //分页
+                $("#carInfoPagination").paging({
+                    rows:data['pageInfo']['pageSize'],//每页显示条数
+                    pageNum:data['pageInfo']['pageNum'],//当前所在页码
+                    pages:data['pageInfo']['pages'],//总页数
+                    total:data['pageInfo']['total'],//总记录数
+                    callback:function(currentPage){
+                        getCarInfo(currentPage);
+                    }
+                });
+            },
+            error:function () {
+                alert("获取车辆信息失败");
+            }
+        });
+    }
+
+    // ---------------------------------------------- 左侧入口点击事件 ----------------------------------------------
     //点击悄悄话
     $('.superAdminList .privateWord').click(function () {
         $.ajax({
@@ -655,17 +839,34 @@
         getArticleCategoriesInfo(1);
     });
 
+    //点击轮播消息管理
+    $('.superAdminList .bannerManagement').click(function () {
+        getBannerManagement(1);
+    });
+
     // excel 入口点击事件
     $('.superAdminList .excelInfo').click(function () {
         getExcelInfo(1);
     });
 
-    // 右侧点击事件----------------------------------------------
+    // 车辆信息 入口点击事件
+    $('.superAdminList .carInfo').click(function () {
+        getCarInfo(1);
+    });
+
+    // ---------------------------------------------- 右侧点击事件 ----------------------------------------------
     // 添加文章分类
     $('#addCategory_btn').click(function () {
         var category = $('#category_name');
         addCategoryInfo($.trim(category.val()));
     });
+
+    // 添加banner
+    $('#addBanner_btn').click(function () {
+        var bannerName = $('#banner_name');
+        addBannerInfo($.trim(bannerName.val()));
+    });
+
 
     //快递订单，点击查询
     $('#expressSearch').click(function () {

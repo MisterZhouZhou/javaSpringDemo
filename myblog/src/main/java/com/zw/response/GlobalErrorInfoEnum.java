@@ -7,7 +7,8 @@ package com.zw.response;
  */
 public enum GlobalErrorInfoEnum implements ErrorInfoInterface{
     SUCCESS("200", "success"),
-    NOT_FOUND("404", "service not found");
+    NOT_FOUND("404", "service not found"),
+    FAILED("500", "service error");
 
     private String code;
 

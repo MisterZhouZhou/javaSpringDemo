@@ -313,7 +313,9 @@
                 var bannersRoll = $('.roll').children("ul");
                 bannersRoll.empty();
                 $.each(data['result'], function (index, obj) {
-                    bannersRoll.append($('<li>' + obj["bannerName"] +'</li>'));
+                    if(obj['show']){
+                        bannersRoll.append($('<li>' + obj["bannerName"] +'</li>'));
+                    }
                 });
             },
             error: function () {

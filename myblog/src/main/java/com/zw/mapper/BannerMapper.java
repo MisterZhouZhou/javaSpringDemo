@@ -1,9 +1,11 @@
 package com.zw.mapper;
 
+import com.zw.model.Article;
 import com.zw.model.Banner;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +22,12 @@ public interface BannerMapper {
     @Select("select * from banner order by id desc")
     List<Banner> findBanners();
 
+    @Select("select * from banner where id=#{bannerId}")
+    Banner findBannerById(int bannerId);
+
     @Select("select count(*) from banner")
     int countBannersNum();
 
+    @Update("update banner b set b.bannerName=#{bannerName}, b.show=#{show} where b.id=#{id}")
+    void updateBannerByBanner(Banner banner);
 }

@@ -1,7 +1,7 @@
 package com.zw.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.zw.model.Banner;
+import com.zw.response.GlobalErrorInfoEnum;
 import com.zw.response.ResultBody;
 import com.zw.service.BannerService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -48,9 +48,31 @@ public class BannerController {
     @ApiOperation(value="提交banner信息", notes="")
     @ApiImplicitParam(name = "banner", value = "轮播图banner", required = true, dataType = "Banner")
     @PostMapping("/addBanner")
-    public JSONObject addBanner(@RequestBody Banner banner){
-        return bannerService.addBanner(banner);
+    public ResultBody addBanner(@RequestBody Banner banner){
+        int result = bannerService.addBanner(banner);
+        if(result == 0){ // 插入失败
+            return new ResultBody(GlobalErrorInfoEnum.FAILED);
+        }
+        return new ResultBody(banner);
     }
 
+
+    /**
+     * 更新banner
+     * params
+     * @return
+     */
+    @ApiOperation(value="banner更新信息", notes="")
+    @ApiImplicitParam(name = "banner", value = "轮播图banner信息", required = true, dataType = "Banner")
+    @PostMapping("/updateBanner")
+    public int updateBanner(@RequestBody Banner banner){
+        Banner tmpBanner = bannerService.findBannerById(banner.getId());
+        if(tmpBanner != null){
+           tmpBanner.setShow(banner.isShow());
+           int result = bannerService.updateBannerByBanner(tmpBanner);
+           return result;
+        }
+        return 0;
+    }
 
 }

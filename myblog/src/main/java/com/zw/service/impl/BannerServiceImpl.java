@@ -21,25 +21,39 @@ public class BannerServiceImpl implements BannerService {
     BannerMapper bannerMapper;
 
     @Override
-    public JSONObject addBanner(Banner banner) {
-        bannerMapper.insertBanner(banner);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("status",200);
-        jsonObject.put("result",JSONArray.parseArray(JSON.toJSONString(banner)));
-        return jsonObject;
+    public int addBanner(Banner banner) {
+        try {
+            bannerMapper.insertBanner(banner);
+            return 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
     public List<Banner> findBanners() {
-//        List<Banner> banners = bannerMapper.findBanners();
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("status",200);
-//        jsonObject.put("result",JSONArray.fromObject(banners));
         return bannerMapper.findBanners();
+    }
+
+    @Override
+    public Banner findBannerById(int bannerId) {
+        return bannerMapper.findBannerById(bannerId);
     }
 
     @Override
     public int countBannersNum() {
         return bannerMapper.countBannersNum();
+    }
+
+    @Override
+    public int updateBannerByBanner(Banner banner) {
+        try {
+            bannerMapper.updateBannerByBanner(banner);
+            return 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
