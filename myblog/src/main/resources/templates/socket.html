@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>socket chat</title>
+    <link rel="icon" type="image/x-icon" href="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/favicon.ico">
+    <link rel="stylesheet" href="/css/socket.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <input type="hidden" id="cid" th:value="${cid}"/>
+    <p>
+        账号<input type="text" id="from"  style="width: 150px; border: 1px solid red;" />
+        昵称<input type="text" id="nickname"  style="width: 150px; border: 1px solid red;" />
+        <div class="chatContainer">
+            <ul id="chatZone"></ul>
+        </div>
+        <div>
+            消息<input type="text" id="txtMessage" style="width: 150px;border: 1px solid red;" />
+            <button id="messageSend">发送</button>
+        </div>
+    </p>
+</body>
+
+<script>
+    // 日期格式化
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        if (hours >= 0 && hours <= 9) {
+            hours = "0" + hours;
+        }
+        if (minutes >= 0 && minutes <= 9) {
+            minutes = "0" + minutes;
+        }
+        if (seconds >= 0 && seconds <= 9) {
+            seconds = "0" + seconds;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + hours + seperator2 + minutes
+            + seperator2 + seconds;
+        return currentdate;
+    }
+
+    $(function() {
+        var socket;
+        if(typeof(WebSocket) == 'undefined'){
+            console.log("您的浏览器不支持WebSocket");
+        }else{
+            console.log("您的浏览器支持WebSocket");
+            //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+            //等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
+            var wsUrl = "ws://"+window.location.host+"/websocket/";
+            var cid = $("#cid").val();
+            // 链接socket服务
+            socket = new WebSocket(wsUrl+cid);
+            //打开事件
+            socket.onopen = function() {
+                console.log("Socket 已打开");
+                //socket.send("这是来自客户端的消息" + location.href + new Date());
+            };
+
+            //获得消息事件
+            socket.onmessage = function(event) {
+                console.log(event.data);
+                var socketData = eval('(' + event.data + ')');
+                //发现消息进入
+                if(socketData.from != undefined){
+                    var from = $("#from").val();
+                    if(socketData.from != from) {
+                        var message ="<li class='msgContent left'>"+
+                            "<p class='msgContent left title'>"+socketData.nickname+" ("+getNowFormatDate()+"):</p>"+
+                            "<p class='msgContent left p'>"+socketData.message+"</p></li>"+
+                            "<div style='clear:both'></div>";
+                        $("#chatZone").append(message);
+                    }else{
+                        // 自己发送消息,这种方式允许代理发送消息
+                        var message ="<li class='msgContent right'>"+
+                            "<p class='msgContent title'>"+socketData.nickname+" ("+getNowFormatDate()+"):</p>"+
+                            "<p class='msgContent p'>"+socketData.message+"</p></li>"+
+                            "<div style='clear:both'></div>";
+                        $("#chatZone").append(message);
+                        $("#txtMessage").val("");
+                    }
+                }
+            };
+            //关闭事件
+            socket.onclose = function() {
+                console.log("Socket已关闭");
+            };
+
+            //发生了错误事件
+            socket.onerror = function() {
+                alert("Socket发生了错误");
+                //此时可以尝试刷新页面
+            }
+
+
+            // 自定义事件
+            $("#messageSend").click(function() {
+                var msg = $("#txtMessage").val();
+                var nickname = $("#nickname").val();
+                var from = $("#from").val();
+                var obj = {
+                    nickname: nickname,
+                    from: from,
+                    message: msg
+                }
+                socket.send(JSON.stringify(obj));
+                // // 自己发送消息
+                // var message ="<li class='msgContent right'>"+
+                //     "<p class='msgContent title'>"+nickname+" ("+getNowFormatDate()+"):</p>"+
+                //     "<p class='msgContent p'>"+msg+"</p></li>"+
+                //     "<div style='clear:both'></div>";
+                // $("#chatZone").append(message);
+                // $("#txtMessage").val("");
+            });
+
+
+            //关闭连接
+            function closeWebSocket() {
+                socket.close();
+            }
+
+            //发送消息
+            function send() {
+                var message = document.getElementById('text').value;
+                socket.send(message);
+            }
+        }
+    });
+</script>
+
+</html>

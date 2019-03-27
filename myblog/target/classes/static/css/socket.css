@@ -1,0 +1,58 @@
+.chatContainer {
+    background-color: lightyellow;
+    width: 90%;
+    height: 400px;
+    overflow: scroll;
+}
+
+.chatContainer ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.msgContent{
+    width:auto;
+    max-width: 250px;
+    height: auto;
+    word-break: break-all;
+    margin: 5px;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+#chatZone .left{
+    list-style:none;
+    text-align: left;
+}
+#chatZone .left .p{
+    float: left;
+    text-align: left;
+    background-color: lightgrey;
+    font-size: 2ex;
+
+}
+#chatZone .left .title{
+    text-align: left;
+    font-size: 5px;
+    color:grey;
+}
+#chatZone .right{
+    float: right;
+    list-style:none;
+    text-align: right;
+}
+#chatZone .right .title{
+    text-align: right;
+    font-size: 5px;
+    color:grey;
+    clear:both;
+}
+#chatZone .right .p{
+    float: right;
+    text-align: right;
+    background-color: yellowgreen;
+    font-size: 2ex;
+
+}

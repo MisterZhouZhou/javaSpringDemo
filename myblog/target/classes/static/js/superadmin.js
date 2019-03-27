@@ -3,7 +3,7 @@
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd,#chatInfo').css("display","none");
         $("#" + flag).css("display","block");
     });
 
