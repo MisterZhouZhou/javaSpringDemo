@@ -11,7 +11,7 @@
 <body>
     <input type="hidden" id="cid" th:value="${cid}"/>
     <p>
-        账号<input type="text" id="from"  style="width: 150px; border: 1px solid red;" />
+        <input type="text" id="from" hidden="hidden"  style="width: 150px; border: 1px solid red;" th:value="${cid}" />
         昵称<input type="text" id="nickname"  style="width: 150px; border: 1px solid red;" />
         <div class="chatContainer">
             <ul id="chatZone"></ul>
@@ -87,7 +87,7 @@
                             "<div style='clear:both'></div>";
                         $("#chatZone").append(message);
                     }else{
-                        // 自己发送消息
+                        // 自己发送消息,这种方式允许代理发送消息
                         var message ="<li class='msgContent right'>"+
                             "<p class='msgContent title'>"+socketData.nickname+" ("+getNowFormatDate()+"):</p>"+
                             "<p class='msgContent p'>"+socketData.message+"</p></li>"+

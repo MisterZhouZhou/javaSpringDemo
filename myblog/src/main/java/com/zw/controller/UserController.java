@@ -14,10 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
@@ -212,4 +209,10 @@ public class UserController {
         return privateWordService.getPrivateWordByPublisher(username, Integer.parseInt(rows), Integer.parseInt(pageNum));
     }
 
+
+    @GetMapping("/activateUser/{id}")
+    public void activateUser(@PathVariable long id){
+        System.out.println("激活用户操作");
+        System.out.println(id);
+    }
 }

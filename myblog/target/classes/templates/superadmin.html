@@ -101,6 +101,7 @@
                 <li class="superAdminClick excelInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> excel入口</a></li>
                 <li class="superAdminClick carInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 车辆品牌信息入口</a></li>
                 <li class="superAdminClick chatInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 在线聊天入口</a></li>
+                <li class="superAdminClick emailInfo" style="width: 100%"><a><span class="am-icon-pencil-square-o"></span> 邮件发送</a></li>
             </ul>
 
             <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -302,6 +303,77 @@
             <div class="superFunction" id="chatInfo">
                 <div class="subject">
                     <h4>socket聊天信息</h4>
+                    <div style="margin: 20px;">
+                        <a target="_blank" href="http://127.0.0.1:9090/checkcenter/socket/20">聊天窗口1</a>
+                        <a target="_blank" href="http://127.0.0.1:9090/checkcenter/socket/21">聊天窗口2</a>
+                    </div>
+                </div>
+            </div>
+            <div class="superFunction" id="emailInfo">
+                <div class="subject">
+                    <h4>邮件发送</h4>
+                    <div style="margin: 20px;">
+                        <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
+                            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                                <li class="am-active"><a href="javascript: void(0)">普通邮件</a></li>
+                                <li><a href="javascript: void(0)">html邮件</a></li>
+                                <li><a href="javascript: void(0)">带附件的邮件</a></li>
+                                <li><a href="javascript: void(0)">模版邮件</a></li>
+                            </ul>
+
+                            <div class="am-tabs-bd">
+                                <div class="am-tab-panel am-active">
+                                    <div>
+                                        邮件接收人 <input class="emailTo" style="width: 200px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件主题 <input class="emailSubject" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件内容 <input class="emailContent" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                </div>
+                                <div class="am-tab-panel">
+                                    <div>
+                                        邮件接收人 <input class="emailTo" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件主题 <input class="emailSubject" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件内容 <input class="emailContent" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                </div>
+                                <div class="am-tab-panel">
+                                    <div>
+                                        邮件接收人 <input class="emailTo" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件主题 <input class="emailSubject" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件内容 <input class="emailContent" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件附件地址 <input class="emailFile" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                </div>
+                                <div class="am-tab-panel">
+                                    <div>
+                                        邮件接收人 <input class="emailTo" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件主题 <input class="emailSubject" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                    <div>
+                                        邮件内容 <input class="emailContent" style="width: 120px;border: 1px solid lightgray;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <button type="button" class="am-btn am-btn-primary emailSendBtn">发送邮件</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

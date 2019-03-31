@@ -3,7 +3,7 @@
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd,#chatInfo').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd,#chatInfo,#emailInfo').css("display","none");
         $("#" + flag).css("display","block");
     });
 
@@ -797,6 +797,27 @@
         });
     }
 
+    // 发送普通邮件
+    function postEmailInfo(url, emailData) {
+        $.ajax({
+            type: 'post',
+            url: '/'+url,
+            contentType: "application/json",
+            data: JSON.stringify(emailData),
+            success: function (data) {
+                if(data['code'] == 200){
+                    successNotice("邮件发送成功");
+                    getArticleComment(1);
+                }else{
+                    dangerNotice("邮件发送失败")
+                }
+            },
+            error: function (e) {
+                alert("fail: "+e.toString());
+            }
+        });
+    }
+
     // ---------------------------------------------- 左侧入口点击事件 ----------------------------------------------
     //点击悄悄话
     $('.superAdminList .privateWord').click(function () {
@@ -873,6 +894,38 @@
         var logisticsCode = $('#expressInfo #logisticsCode');
         var logisticsNo = $('#expressInfo #logisticsNo');
         getExpressInfo($.trim(logisticsCode.val()), $.trim(logisticsNo.val()));
+    });
+
+    // 邮件发送事件
+    $('.emailSendBtn').on('click', function() {
+        var $tab = $('#doc-tab-demo-1');
+        var $nav = $tab.find('.am-tabs-nav');
+        var $navLiEl = $nav.find('.am-active');
+        var $bd = $tab.find('.am-tabs-bd');
+        var $activeDiv = $bd.find('.am-active');
+        var $emailToEl = $activeDiv.find('.emailTo');
+        var $subjectEl = $activeDiv.find('.emailSubject');
+        var $contentEl = $activeDiv.find('.emailContent');
+        var $fileEl = $activeDiv.find('.emailFile');
+
+        alert($emailToEl.val()+'==='+$subjectEl.val()+'==='+$contentEl.val()+'=='+$navLiEl.index());
+        var emailUrl, emailData;
+        emailData = {to: $emailToEl.val(),
+            subject: $subjectEl.val(),
+            content: $contentEl.val()
+        };
+        if($navLiEl.index() == 0){ // 普通邮件
+            emailUrl  = 'sendMail';
+        }else if($navLiEl.index() == 1){ // html邮件
+            emailUrl = 'sendHtmlMail';
+        }else if($navLiEl.index() == 2){ // 带附件的邮件
+            emailUrl = 'sendAttachmentsMail';
+            emailData['filePath'] = $fileEl.val();
+        }else if($navLiEl.index() == 3){ // 模版邮件
+            emailUrl = 'sendFreemarkerMail';
+        }
+
+        postEmailInfo(emailUrl,emailData);
     });
 
     getStatisticsInfo();
