@@ -1,6 +1,7 @@
 package com.zw.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -62,6 +63,49 @@ public class HttpUtil {
             e.printStackTrace();
         }
         return contentObject;
+    }
+
+
+    /**
+     * 处理doget请求
+     * @param url
+     * @return
+     */
+    public static JSONObject doGetstr(String url){
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(url);
+        JSONObject jsonObject = null;
+        try {
+            CloseableHttpResponse response = httpclient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            if(entity!=null){
+                String result = EntityUtils.toString(entity);
+                jsonObject = JSONObject.parseObject(result);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+
+    }
+    /**
+     * 处理post请求
+     * @param url
+     * @return
+     */
+    public static JSONObject doPoststr(String url,String outStr) {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost(url);
+        JSONObject jsonObject = null;
+        try {
+            httpPost.setEntity(new StringEntity(outStr, "utf-8"));
+            CloseableHttpResponse response = httpclient.execute(httpPost);
+            String result = EntityUtils.toString(response.getEntity(), "utf-8");
+            jsonObject = JSONObject.parseObject(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }
 
