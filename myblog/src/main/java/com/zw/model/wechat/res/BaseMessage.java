@@ -28,7 +28,7 @@ public class BaseMessage {
     private String MsgType;
 
     //星标刚收到的消息
-    private int FuncFlag;
+//    private int FuncFlag;
 
     public String getToUserName() {
         return ToUserName;
@@ -54,10 +54,10 @@ public class BaseMessage {
     public void setMsgType(String msgType) {
         MsgType = msgType;
     }
-    public int getFuncFlag() {
-        return FuncFlag;
-    }
-    public void setFuncFlag(int funcFlag) {
-        FuncFlag = funcFlag;
-    }
+//    public int getFuncFlag() {
+//        return FuncFlag;
+//    }
+//    public void setFuncFlag(int funcFlag) {
+//        FuncFlag = funcFlag;
+//    }
 }

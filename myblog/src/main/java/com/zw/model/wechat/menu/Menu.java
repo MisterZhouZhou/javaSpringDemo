@@ -1,4 +1,4 @@
-package com.zw.model.wechat;
+package com.zw.model.wechat.menu;
 
 /**
  * 微信公众号menu

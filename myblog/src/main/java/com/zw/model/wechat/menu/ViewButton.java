@@ -1,4 +1,4 @@
-package com.zw.model.wechat;
+package com.zw.model.wechat.menu;
 
 public class ViewButton extends Button {
     private String url;

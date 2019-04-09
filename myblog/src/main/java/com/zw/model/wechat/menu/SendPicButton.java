@@ -1,7 +1,6 @@
-package com.zw.model.wechat;
+package com.zw.model.wechat.menu;
 
-public class ClickButton extends Button {
-
+public class SendPicButton extends Button{
     private String key;
 
     public String getKey() {

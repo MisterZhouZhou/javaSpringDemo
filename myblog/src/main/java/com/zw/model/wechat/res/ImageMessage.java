@@ -1,25 +1,24 @@
 package com.zw.model.wechat.res;
 
 import com.zw.constant.WeChatContant;
+import com.zw.model.wechat.Image;
 
 import java.util.Date;
 
 public class ImageMessage extends BaseMessage {
-    /**
-     * 图片链接
-     */
-    private String PicUrl;
+
+    private Image Image;
 
     public ImageMessage(){
         this.setCreateTime(new Date().getTime());
         this.setMsgType(WeChatContant.REQ_MESSAGE_TYPE_IMAGE);
     }
 
-    public String getPicUrl() {
-        return PicUrl;
+    public Image getImage() {
+        return Image;
     }
 
-    public void setPicUrl(String picUrl) {
-        PicUrl = picUrl;
+    public void setImage(Image image) {
+        Image = image;
     }
 }

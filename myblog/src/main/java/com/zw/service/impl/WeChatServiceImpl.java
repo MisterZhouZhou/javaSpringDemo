@@ -4,24 +4,19 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.zw.constant.WeChatContant;
 import com.zw.model.wechat.*;
+import com.zw.model.wechat.menu.*;
+import com.zw.model.wechat.res.MusicMessage;
 import com.zw.service.WeChatService;
 import com.zw.utils.HttpUtil;
+import com.zw.utils.wechat.BaiduMusicServiceUtil;
 import com.zw.utils.wechat.WeChatMessageModelUtil;
 import com.zw.utils.wechat.WeChatUtil;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Service
 public class WeChatServiceImpl implements WeChatService {
-
-    // 添加菜单
-    public static final String ADD_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
-
-    //获取access_token 接口
-    public static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?"
-            + "grant_type=client_credential&appid=APPID&secret=APPSECRET";
 
     @Override
     public String processRequest(HttpServletRequest request) {
@@ -45,59 +40,106 @@ public class WeChatServiceImpl implements WeChatService {
 
                 mes =requestMap.get(WeChatContant.Content).toString();
                 if(mes!=null && WeChatUtil.isInteger(mes) && Integer.parseInt(mes) < 10){
+                    // 纯数字功能菜单
                     respXml = WeChatMessageModelUtil.sendMenuNewsMessage(weChatMessageUserInfo, mes);
-                }else if(WeChatUtil.isQqFace(mes)){
+                }
+                else if(WeChatUtil.isQqFace(mes)){
                     // 如果为表情，回复表情
                     respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,mes);
                 } else if("模版".equals(mes)){
-                    respXml = "<xml><ToUserName><![CDATA[oygJk1g3GMXHtbrL5ORIH5GWCb08]]></ToUserName><FromUserName><![CDATA[gh_58845e266a8c]]></FromUserName><CreateTime>1554294661205</CreateTime><MsgType><![CDATA[link]]></MsgType><Title><![CDATA[公众平台官网链接]]></Title><Description><![CDATA[公众平台官网链接]]></Description><Url><![CDATA[http://xxx.xx/test/index.html]]></Url></xml>";
-                    System.out.print("==="+respXml);
-//                    respXml = WeChatMessageModelUtil.sendLinkMessage(weChatMessageUserInfo, "模版标题", "模版描述", "https://baidu.com");
-//                    System.out.print(respXml);
+                    // 类型发送失败
+                    respXml = WeChatMessageModelUtil.sendLinkMessage(weChatMessageUserInfo, "模版标题", "模版描述", "https://baidu.com");
                 }else if("定位".equals(mes)){
                     respXml = WeChatMessageModelUtil.sendLocationMessage(weChatMessageUserInfo);
-                    System.out.println(respXml);
-                    respXml="<xml>\n" +
-                            "  <ToUserName><![CDATA[oygJk1g3GMXHtbrL5ORIH5GWCb08]]></ToUserName>\n" +
-                            "  <FromUserName><![CDATA[gh_58845e266a8c]]></FromUserName>\n" +
-                            "  <CreateTime>1554293977566</CreateTime>\n" +
-                            "  <MsgType><![CDATA[location]]></MsgType>\n" +
-                            "  <Location_X>23.134521</Location_X>\n" +
-                            "  <Location_Y>113.358803</Location_Y>\n" +
-                            "  <Scale>20</Scale>\n" +
-                            "  <Label><![CDATA[位置信息]]></Label>\n" +
-                            "</xml>";
-                    System.out.println("==="+respXml);
-                    respXml="<xml>\n" +
-                            "  <ToUserName><![CDATA[oygJk1g3GMXHtbrL5ORIH5GWCb08]]></ToUserName>\n" +
-                            "  <FromUserName><![CDATA[gh_58845e266a8c]]></FromUserName>\n" +
-                            "  <CreateTime>1554293977566</CreateTime>\n" +
-                            "  <MsgType><![CDATA[text]]></MsgType>\n" +
-                            "  <Content><![CDATA[dddd]]></Content>\n" +
-                            "</xml>";
+                    respXml = respXml.replace("Location__X", "Location_X").replace("Location__Y","Location_Y");
+                }else if("接收图片信息".equals(mes)){
+                    respXml = WeChatMessageModelUtil.doImageMessage(weChatMessageUserInfo);
+                }else  if("二维码".equals(mes)){
+                    // 订阅号失败
+                    respXml = WeChatMessageModelUtil.doCode(weChatMessageUserInfo);
+                }else  if("历史上的今天".equals(mes)){
+                    respXml = WeChatMessageModelUtil.doTodyOfHistory(weChatMessageUserInfo);
+                }// 如果以“歌曲”2个字开头
+                else if (mes.startsWith("歌曲")) {
+                    // 将歌曲2个字及歌曲后面的+、空格、-等特殊符号去掉
+                    String keyWord = mes.replaceAll("^歌曲[\\+ ~!@#%^-_=]?", "");
+                    // 如果歌曲名称为空
+                    if ("".equals(keyWord)) {
+                        respContent = "歌曲名为空";
+                    } else {
+                        String[] kwArr = keyWord.split("@");
+                        // 歌曲名称
+                        String musicTitle = kwArr[0];
+                        // 演唱者默认为空
+                        String musicAuthor = "";
+                        if (2 == kwArr.length)
+                            musicAuthor = kwArr[1];
 
+                        // 搜索音乐
+                        Music music = BaiduMusicServiceUtil.searchMusic(musicTitle, musicAuthor);
+                        // 未搜索到音乐
+                        if (null == music) {
+                            respContent = "对不起，没有找到你想听的歌曲<" + musicTitle + ">。";
+                        } else {
+                            // 音乐消息
+                            MusicMessage musicMessage = new MusicMessage();
+                            musicMessage.setToUserName(weChatMessageUserInfo.getToUserName());
+                            musicMessage.setFromUserName(weChatMessageUserInfo.getFromUserName());
+                            musicMessage.setMusic(music);
+                            respXml = WeChatUtil.musicMessageToXml(musicMessage);
+                        }
+                    }
+                }else if(mes.startsWith("天气")){
+                    // 将天气2个字及天气后面的+、空格、-等特殊符号去掉
+                    String keyWord = mes.replaceAll("^天气[\\+ ~!@#%^-_=]?", "");
+                    if ("".equals(keyWord)) {
+                        respContent = "城市信息为空";
+                    } else {
+                        String[] kwArr = keyWord.split("@");
+                        // 歌曲名称
+                        String weatherTitle = kwArr[0];
+                        if(WeChatUtil.isInteger(mes)){ // 城市id
+                            respXml = WeChatMessageModelUtil.doWeatherById(weChatMessageUserInfo,weatherTitle);
+                        }else{
+                            respXml = WeChatMessageModelUtil.doWeatherByName(weChatMessageUserInfo,weatherTitle);
+                        }
+                    }
+                }else if(mes.startsWith("快递")){
+                    // 将天气2个字及天气后面的+、空格、-等特殊符号去掉
+                    String keyWord = mes.replaceAll("^快递[\\+ ~!@#%^-_=]?", "");
+                    if ("".equals(keyWord)) {
+                        respContent = "快递信息为空";
+                    } else {
+                        String[] kwArr = keyWord.split("@");
+                        // 快递名称
+                        String expressTitle = kwArr[0];
+                        String expressOrderId = kwArr[1];
+                        respXml = WeChatMessageModelUtil.doExpress(weChatMessageUserInfo,expressTitle, expressOrderId);
+                    }
                 }
 
             }
             // 图片消息
             else if (msgType.equals(WeChatContant.REQ_MESSAGE_TYPE_IMAGE)) {
                 respContent = "您发送的是图片消息！";
-                respXml = WeChatUtil.sendTextMsg(requestMap, respContent);
+                respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, respContent);
             }
             // 语音消息
             else if (msgType.equals(WeChatContant.REQ_MESSAGE_TYPE_VOICE)) {
                 respContent = "您发送的是语音消息！";
-                respXml = WeChatUtil.sendTextMsg(requestMap, respContent);
+                respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, respContent);
             }
             // 视频消息
             else if (msgType.equals(WeChatContant.REQ_MESSAGE_TYPE_VIDEO)) {
                 respContent = "您发送的是视频消息！";
-                respXml = WeChatUtil.sendTextMsg(requestMap, respContent);
+                respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, respContent);
             }
             // 地理位置消息
             else if (msgType.equals(WeChatContant.REQ_MESSAGE_TYPE_LOCATION)) {
-                respContent = "您发送的是地理位置消息！";
-                respXml = WeChatUtil.sendTextMsg(requestMap, respContent);
+                String x = requestMap.get("Location_X");
+                String y = requestMap.get("Location_Y");
+                String label = requestMap.get("Label");
+                respXml = WeChatMessageModelUtil.doLocation(weChatMessageUserInfo, x, y, label);
             }
             // 链接消息
             else if (msgType.equals(WeChatContant.REQ_MESSAGE_TYPE_LINK)) {
@@ -120,14 +162,17 @@ public class WeChatServiceImpl implements WeChatService {
                 // 扫描带参数二维码
                 else if (eventType.equals(WeChatContant.EVENT_TYPE_SCAN)) {
                     // TODO 处理扫描带参数二维码事件
+                    respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, "处理扫描带参数二维码事件");
                 }
                 // 上报地理位置
                 else if (eventType.equals(WeChatContant.EVENT_TYPE_LOCATION)) {
                     // TODO 处理上报地理位置事件
+                    respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, "处理上报地理位置事件");
                 }
                 // 自定义菜单
                 else if (eventType.equals(WeChatContant.EVENT_TYPE_CLICK)) {
                     // TODO 处理菜单点击事件
+                    respXml = WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, "处理菜单点击事件");
                 }
             }
             mes = mes == null ? "不知道你在干嘛" : mes;
@@ -146,7 +191,7 @@ public class WeChatServiceImpl implements WeChatService {
     @Override
     public String getAccessToken() {
         AccessToken accessToken = null;
-        String requestUrl = ACCESS_TOKEN_URL.replace("APPID", WeChatContant.appID).replace("APPSECRET", WeChatContant.appsecret);
+        String requestUrl = WeChatContant.ACCESS_TOKEN_URL.replace("APPID", WeChatContant.appID).replace("APPSECRET", WeChatContant.appsecret);
         JSONObject jsonObject = HttpUtil.httpGet(requestUrl);
         if (null != jsonObject) {
             try {
@@ -166,8 +211,7 @@ public class WeChatServiceImpl implements WeChatService {
         if (access_token == null){
             return false;
         }
-        String url = ADD_MENU_URL.replace("ACCESS_TOKEN", access_token);
-
+        String url = WeChatContant.ADD_MENU_URL.replace("ACCESS_TOKEN", access_token);
         Menu menu = new Menu();
         ViewButton viewButton = new ViewButton();
         viewButton.setName("搜索");

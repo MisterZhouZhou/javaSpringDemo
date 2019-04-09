@@ -1,116 +1,115 @@
 package com.zw.utils.wechat;
 
 import com.alibaba.fastjson.JSONObject;
-import org.aspectj.lang.reflect.NoSuchPointcutException;
+import com.zw.constant.WeChatContant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 
 public class UploadUtil {
-    private static final String UPLOAD_URL ="https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    private static Logger logger = LoggerFactory.getLogger(UploadUtil.class);
+
     /**
-     * 文件上传
+     * 文件上传的方法
      * @param filePath
-     * @param accessToken
-     * @param type
+     * @param
      * @return
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchProviderException
-     * @throws KeyManagementException
      */
-    // UploadUtil.upload(path, access_token,"image");
-    public static String upload(String filePath, String accessToken,String type) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, KeyManagementException {
-        File file = new File(filePath);
-        if (!file.exists() || !file.isFile()) {
-
-            throw new IOException("文件不存在");
-        }
-
-        String url = UPLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("TYPE",type);
-
-        URL urlObj = new URL(url);
-        //连接
-        HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-
-        con.setRequestMethod("POST");
-        con.setDoInput(true);
-        con.setDoOutput(true);
-        con.setUseCaches(false);
-
-        //设置请求头信息
-        con.setRequestProperty("Connection", "Keep-Alive");
-        con.setRequestProperty("Charset", "UTF-8");
-
-        //设置边界
-        String BOUNDARY = "----------" + System.currentTimeMillis();
-        con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("--");
-        sb.append(BOUNDARY);
-        sb.append("\r\n");
-        sb.append("Content-Disposition: form-data;name=\"file\";filename=\"" + file.getName() + "\"\r\n");
-        sb.append("Content-Type:application/octet-stream\r\n\r\n");
-
-        byte[] head = sb.toString().getBytes("utf-8");
-
-        //获得输出流
-        OutputStream out = new DataOutputStream(con.getOutputStream());
-        //输出表头
-        out.write(head);
-
-        //文件正文部分
-        //把文件已流文件的方式 推入到url中
-        DataInputStream in = new DataInputStream(new FileInputStream(file));
-        int bytes = 0;
-        byte[] bufferOut = new byte[1024];
-        while ((bytes = in.read(bufferOut)) != -1) {
-            out.write(bufferOut, 0, bytes);
-        }
-        in.close();
-
-        //结尾部分
-        byte[] foot = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("utf-8");//定义最后数据分隔线
-
-        out.write(foot);
-
-        out.flush();
-        out.close();
-
-        StringBuffer buffer = new StringBuffer();
-        BufferedReader reader = null;
-        String result = null;
+    public static String upload(String filePath,String fileType,String token){
+        String result=null;
+        String mediaId=null;
+        File file=new File(filePath);
         try {
-            //定义BufferedReader输入流来读取URL的响应
-            reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
+            if(!file.exists()||!file.isFile()){
             }
-            if (result == null) {
-                result = buffer.toString();
-            }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
         }
+        try {
+            String urlString = WeChatContant.ADD_FILE_TEMPORARY.replace("ACCESS_TOKEN", token).replace("TYPE", fileType);
+            URL url=new URL(urlString);
+            HttpsURLConnection conn=(HttpsURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");//以POST方式提交表单
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);//POST方式不能使用缓存
+            //设置请求头信息
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            //设置边界
+            String BOUNDARY="----------"+System.currentTimeMillis();
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+            //请求正文信息
+            //第一部分
+            StringBuilder sb=new StringBuilder();
+            sb.append("--");//必须多两条道
+            sb.append(BOUNDARY);
+            sb.append("\r\n");
+            sb.append("Content-Disposition: form-data;name=\"media\"; filename=\"" + file.getName()+"\"\r\n");
+            sb.append("Content-Type:application/octet-stream\r\n\r\n");
 
-        JSONObject jsonObj = JSONObject.parseObject(result);
-        String typeName = "media_id";
-        if("thumb".equals(type)){
-            typeName = type + "_media_id";
+            //获得输出流
+            OutputStream out=new DataOutputStream(conn.getOutputStream());
+            //输出表头
+            out.write(sb.toString().getBytes("UTF-8"));
+            //文件正文部分
+            //把文件以流的方式 推送道URL中
+            DataInputStream din=new DataInputStream(new FileInputStream(file));
+            int bytes=0;
+            byte[] buffer=new byte[1024];
+            while((bytes=din.read(buffer))!=-1){
+                out.write(buffer,0,bytes);
+            }
+            din.close();
+            //结尾部分
+            byte[] foot=("\r\n--" + BOUNDARY + "--\r\n").getBytes("UTF-8");//定义数据最后分割线
+            out.write(foot);
+            out.flush();
+            out.close();
+            if(HttpsURLConnection.HTTP_OK==conn.getResponseCode()){
+
+                StringBuffer strbuffer=null;
+                BufferedReader reader=null;
+                try {
+                    strbuffer=new StringBuffer();
+                    reader=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String lineString=null;
+                    while((lineString=reader.readLine())!=null){
+                        strbuffer.append(lineString);
+
+                    }
+                    if(result==null){
+                        result=strbuffer.toString();
+                        logger.info("result:"+result);
+                        /**
+                         * 新增临时素材和永久素材的返回值不同
+                         * 临时：{"type":"TYPE","media_id":"MEDIA_ID","created_at":123456789}
+                         * 永久：
+                         */
+                        JSONObject jsonObj = JSONObject.parseObject(result);
+                        String typeName = "media_id";
+                        if(!"image".equals(fileType)){
+                            typeName = fileType + "_media_id";
+                        }
+                        mediaId = jsonObj.getString(typeName);
+                    }
+                } catch (IOException e) {
+                    logger.error("发送POST请求出现异常！",e);
+                    e.printStackTrace();
+                }finally{
+                    if(reader!=null){
+                        reader.close();
+                    }
+                }
+
+            }
+        }  catch (IOException e) {
+            e.printStackTrace();
         }
-        String mediaId = jsonObj.getString(typeName);
         return mediaId;
     }
-
 
 }

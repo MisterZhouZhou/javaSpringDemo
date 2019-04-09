@@ -15,6 +15,7 @@ public class WeChatContant {
     public static final String REQ_MESSAGE_TYPE_NEWS = "news";
     public static final String REQ_MESSAGE_TYPE_LOCATION = "location";
     public static final String REQ_MESSAGE_TYPE_LINK = "link";
+    public static final String REQ_MESSAGE_TYPE_MUSIC = "music";
     public static final String REQ_MESSAGE_TYPE_EVENT = "event";
     public static final String EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
     public static final String EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
@@ -28,9 +29,16 @@ public class WeChatContant {
     public static final String Content = "Content";
     public static final String Event = "Event";
 
-
-
-    //获取access_token 接口
-    public static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?"
-            + "grant_type=client_credential&appid=APPID&secret=APPSECRET";
+    // 添加菜单
+    public static final String ADD_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+    // 获取access_token 接口
+    public static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+    // 上传图片
+    public static final String UPLOAD_URL ="https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    // 新增临时素材的接口
+    public static final String ADD_FILE_TEMPORARY= "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    //生成二维码的接口
+    public static final String CREATE_CODE= "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=ACCESS_TOKEN";
+    //展示二维码的接口
+    public static final String SHOW_CODE= "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET";
 }

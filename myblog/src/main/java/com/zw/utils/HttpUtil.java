@@ -79,7 +79,7 @@ public class HttpUtil {
             CloseableHttpResponse response = httpclient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if(entity!=null){
-                String result = EntityUtils.toString(entity);
+                String result = EntityUtils.toString(entity,"utf-8");
                 jsonObject = JSONObject.parseObject(result);
             }
         } catch (IOException e) {
@@ -88,6 +88,7 @@ public class HttpUtil {
         return jsonObject;
 
     }
+
     /**
      * 处理post请求
      * @param url

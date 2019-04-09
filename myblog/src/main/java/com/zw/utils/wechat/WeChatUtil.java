@@ -2,6 +2,7 @@ package com.zw.utils.wechat;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.zw.weChatCode.*;
 import com.zw.constant.WeChatContant;
 import com.zw.model.wechat.*;
 import com.zw.model.wechat.res.*;
@@ -12,13 +13,10 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
-import java.security.KeyManagementException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -141,99 +139,6 @@ public class WeChatUtil {
         return map;
     }
 
-
-    /////////////     方式一       /////////////
-    public static String mapToXML(Map map) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("<xml>");
-        mapToXML2(map, sb);
-        sb.append("</xml>");
-        try {
-            return sb.toString();
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
-    private static void mapToXML2(Map map, StringBuffer sb) {
-        Set set = map.keySet();
-        for (Iterator it = set.iterator(); it.hasNext();) {
-            String key = (String) it.next();
-            Object value = map.get(key);
-            if (null == value)
-                value = "";
-            if (value.getClass().getName().equals("java.util.ArrayList")) {
-                ArrayList list = (ArrayList) map.get(key);
-                sb.append("<" + key + ">");
-                for (int i = 0; i < list.size(); i++) {
-                    HashMap hm = (HashMap) list.get(i);
-                    mapToXML2(hm, sb);
-                }
-                sb.append("</" + key + ">");
-
-            } else {
-                if (value instanceof HashMap) {
-                    sb.append("<" + key + ">");
-                    mapToXML2((HashMap) value, sb);
-                    sb.append("</" + key + ">");
-                } else {
-                    sb.append("<" + key + "><![CDATA[" + value + "]]></" + key + ">");
-                }
-
-            }
-
-        }
-    }
-    /**
-     * 回复文本消息
-     * @param requestMap
-     * @param content
-     * @return
-     */
-    public static String sendTextMsg(Map<String,String> requestMap,String content){
-        Map<String,Object> map=new HashMap<String, Object>();
-        map.put("ToUserName", requestMap.get(WeChatContant.FromUserName));
-        map.put("FromUserName",  requestMap.get(WeChatContant.ToUserName));
-        map.put("MsgType", WeChatContant.RESP_MESSAGE_TYPE_TEXT);
-        map.put("CreateTime", new Date().getTime());
-        map.put("Content", content);
-        return  mapToXML(map);
-    }
-
-    /**
-     * 回复图文消息
-     * @param requestMap
-     * @param items
-     * @return
-     */
-    public static String sendArticleMsg(Map<String,String> requestMap,List<ArticleItem> items){
-        if(items == null || items.size()<1){
-            return "";
-        }
-        Map<String,Object> map=new HashMap<String, Object>();
-        map.put("ToUserName", requestMap.get(WeChatContant.FromUserName));
-        map.put("FromUserName", requestMap.get(WeChatContant.ToUserName));
-        map.put("MsgType", "news");
-        map.put("CreateTime", new Date().getTime());
-        List<Map<String,Object>> Articles=new ArrayList<Map<String,Object>>();
-        for(ArticleItem itembean : items){
-            Map<String,Object> item=new HashMap<String, Object>();
-            Map<String,Object> itemContent=new HashMap<String, Object>();
-            itemContent.put("Title", itembean.getTitle());
-            itemContent.put("Description", itembean.getDescription());
-            itemContent.put("PicUrl", itembean.getPicUrl());
-            itemContent.put("Url", itembean.getUrl());
-            item.put("item",itemContent);
-            Articles.add(item);
-        }
-        map.put("Articles", Articles);
-        map.put("ArticleCount", Articles.size());
-        return mapToXML(map);
-    }
-
-
-    /////////////     方式二        /////////////
-
     /**
      * @Description: 文本消息对象转换成xml
      * @param  textMessage
@@ -241,14 +146,21 @@ public class WeChatUtil {
      * @return  xml
      */
     public static String textMessageToXml(TextMessage textMessage) {
-        // 第一种方法
-//        Map mapObj = JSONObject.parseObject(JSON.toJSONString(textMessage), Map.class);
-//        System.out.println(mapToXML(mapObj));
-//        return mapToXML(mapObj);
 
         // 第二种方式
         xstream.alias("xml", textMessage.getClass());
         return xstream.toXML(textMessage);
+    }
+
+    /**
+     * @Description: 图片消息对象转换成xml
+     * @param  imageMessage
+     * @date   2016-12-01
+     * @return  xml
+     */
+    public static String imageMessageToXml(ImageMessage imageMessage) {
+        xstream.alias("xml", imageMessage.getClass());
+        return xstream.toXML(imageMessage);
     }
 
     /**
@@ -287,24 +199,12 @@ public class WeChatUtil {
     }
 
     /**
-     * @Description: 图片消息对象转换成xml
-     * @param  imageMessage
-     * @date   2016-12-01
-     * @return  xml
-     */
-    public String imageMessageToXml(ImageMessage imageMessage) {
-        xstream.alias("xml", imageMessage.getClass());
-        return xstream.toXML(imageMessage);
-    }
-
-
-    /**
      * @Description: 语音消息对象转换成xml
      * @param  voiceMessage
      * @date   2016-12-01
      * @return  xml
      */
-    public String voiceMessageToXml(VoiceMessage voiceMessage) {
+    public static String voiceMessageToXml(VoiceMessage voiceMessage) {
         xstream.alias("xml", voiceMessage.getClass());
         return xstream.toXML(voiceMessage);
     }
@@ -315,7 +215,7 @@ public class WeChatUtil {
      * @date   2016-12-01
      * @return  xml
      */
-    public String videoMessageToXml(VideoMessage videoMessage) {
+    public static String videoMessageToXml(VideoMessage videoMessage) {
         xstream.alias("xml", videoMessage.getClass());
         return xstream.toXML(videoMessage);
     }
@@ -326,7 +226,7 @@ public class WeChatUtil {
      * @date   2016-12-01
      * @return  xml
      */
-    public String musicMessageToXml(MusicMessage musicMessage) {
+    public static String musicMessageToXml(MusicMessage musicMessage) {
         xstream.alias("xml", musicMessage.getClass());
         return xstream.toXML(musicMessage);
     }
@@ -402,7 +302,6 @@ public class WeChatUtil {
     }
 
 
-
     /**
      * 获取access_token
      * access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
@@ -429,24 +328,76 @@ public class WeChatUtil {
     }
 
 
-
-
     /**
-     * 获取Media id
+     * 生成带参数的二维码
      * @return
      */
-    public static String getmediaId() {
-        String path = "f:/1.jpg";
-        String accessToken = WeChatUtil.getAccessToken();
-        String mediaId = null;
-        try {
-            mediaId = UploadUtil.upload(path, accessToken, "image");
-        } catch (KeyManagementException | NoSuchAlgorithmException
-                | NoSuchProviderException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    public static String cerateCode() {
+        String url  = WeChatContant.CREATE_CODE.replace("ACCESS_TOKEN", WeChatUtil.getAccessToken());
+        String code = JSONObject.toJSONString(WeChatUtil.initStrCode());
+        JSONObject result = HttpUtil.httpPost(url,JSONObject.parseObject(code));
+        if("ok".equals(result.getString("ticket"))){
+            System.out.println("result"+result);
         }
-        return mediaId;
+        return result.getString("ticket");
+    }
+
+    /**
+     * 生成临时的以字符串为参数的二维码
+     * @return
+     */
+    public static TemporaryCode<?> initStrCode() {
+        TemporaryCode<Object> code = new TemporaryCode<>();
+        ActionInfo<Object> actionInfo = new ActionInfo<>();
+        SceneStr scene = new SceneStr();
+        scene.setScene_str("test");
+        actionInfo.setScene(scene);
+        code.setAction_info(actionInfo);
+        code.setAction_name("QR_STR_SCENE");
+        code.setExpire_seconds(604800);//过期时间
+        return code;
+    }
+    /**
+     * 生成临时的以字符串为参数的二维码
+     * @return
+     */
+    public static TemporaryCode<?> initIdCode() {
+        TemporaryCode<Object> code = new TemporaryCode<>();
+        ActionInfo<Object> actionInfo = new ActionInfo<>();
+        SceneId scene = new SceneId();
+        scene.setScene_id(123);
+        actionInfo.setScene(scene);
+        code.setAction_info(actionInfo);
+        code.setAction_name("QR_STR_SCENE");
+        code.setExpire_seconds(604800);//过期时间
+        return code;
+    }
+    /**
+     * 生成永久二维码 scene_id
+     */
+    public static PermanentCode<?> initIdCodePer() {
+        PermanentCode<Object> code = new PermanentCode<>();
+        ActionInfo<Object> actionInfo = new ActionInfo<>();
+        SceneId scene = new SceneId();
+        scene.setScene_id(123);
+        actionInfo.setScene(scene);
+        code.setAction_info(actionInfo);
+        code.setAction_name("QR_LIMIT_STR_SCENE");
+        return code;
+    }
+    /**
+     * 生成永久二维码 scene_str
+     * @return
+     */
+    public static PermanentCode<?> initStrCodePer() {
+        PermanentCode<Object> code = new PermanentCode<>();
+        ActionInfo<Object> actionInfo = new ActionInfo<>();
+        SceneStr scene = new SceneStr();
+        scene.setScene_str("test");
+        actionInfo.setScene(scene);
+        code.setAction_info(actionInfo);
+        code.setAction_name("QR_LIMIT_STR_SCENE");
+        return code;
     }
 
 }

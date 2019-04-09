@@ -1,6 +1,6 @@
-package com.zw.model.wechat;
+package com.zw.model.wechat.menu;
 
-public class SendLocalButton extends Button {
+public class ClickButton extends Button {
 
     private String key;
 
@@ -11,5 +11,4 @@ public class SendLocalButton extends Button {
     public void setKey(String key) {
         this.key = key;
     }
-
 }
