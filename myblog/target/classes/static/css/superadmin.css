@@ -64,9 +64,6 @@
     margin: 50px 0 0 50px;
 }
 /*反馈*/
-.userFeedbackInfo,.privateWord{
-    width: 85%;
-}
 .feedbackInfo{
     border: 1px solid #eceff2;
     margin-bottom: 10px;
@@ -196,6 +193,40 @@
     height: 40px;
 }
 
+#weatherInfo .container {
+    margin: 50px 0 0 50px;
+}
+
+#weatherInfo .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+#weatherInfo .text-success {
+    color: #28a745!important;
+}
+
+#weatherInfo .card {
+    position: relative;
+    display: contents;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+#weatherInfo .select {
+    height: 30px; margin-left: 10px;
+}
+
 td,th{
     border: 1px solid #eceff2;
 }
@@ -203,4 +234,11 @@ td,th{
 table{
     border-collapse: collapse;
     border: 1px solid #eceff2;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }

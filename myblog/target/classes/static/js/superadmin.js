@@ -3,7 +3,7 @@
 
     $('.superAdminList .superAdminClick').click(function () {
         var flag = $(this).attr('class').substring(16);
-        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd,#chatInfo,#emailInfo').css("display","none");
+        $('#statistics,#articleManagement,#articleComment,#articleCategories,#bannerManagement,#friendLink,#userFeedback,#privateWord,#expressInfo,#excelInfo,#carInfo,#bannerAdd,#chatInfo,#emailInfo,#weatherlInfo').css("display","none");
         $("#" + flag).css("display","block");
     });
 
@@ -377,6 +377,34 @@
             '</ul>' +
             '</div>' +
             '</div>'));
+    }
+
+    //填充天气城市信息
+    function putInCitys(data) {
+        var carUlComponent = $('#selectCityId');
+        carUlComponent.empty();
+        $.each(data, function (index, city) {
+            carUlComponent.append($('<option value='+city['cityId']+'>'+ city['cityName'] +'</option>'));
+        });
+    }
+
+    //填充天气信息
+    function putInWeather(data) {
+        var weatherComponent = $('#weatherInfo .card');
+        weatherComponent.empty();
+        $.each(data['forecast'], function (index, forecast) {
+            weatherComponent.append($('<div clas="card-body" style="border: 1px solid #17a2b8!important;">'+
+                '<p clas="card-text">'+ forecast['date'] +'</p>'+
+                '<p clas="card-text">'+ forecast['type'] +'</p>'+
+                '<p clas="card-text">'+ forecast['high'] +'</p>'+
+                '<p clas="card-text">'+ forecast['low'] +'</p>'+
+                '<p clas="card-text">'+ forecast['fengxiang'] +'</p>'+
+                '</div>'
+            ));
+        });
+        $('#weatherInfo .text-success').html(data['city']);
+        $('#weatherInfo .wendu').html(data['wendu']);
+        $('#weatherInfo .ganmao').html(data['ganmao']);
     }
 
     $('.sureArticleDeleteBtn').click(function () {
@@ -818,6 +846,44 @@
         });
     }
 
+    // 城市数据
+    function getWeatherCitys() {
+        $.ajax({
+            type:'get',
+            url:'/weather/citys',
+            dataType:'json',
+            success:function (result) {
+                var data = result['result'];
+                var city = data[0];
+                getWeatherByCityId(city['cityId']);
+                // 填充页面信息
+                putInCitys(data);
+                scrollTo(0,0);//回到顶部
+            },
+            error:function () {
+                alert("获取天气城市信息失败");
+            }
+        });
+    }
+
+    // 城市id获取天气数据
+    function getWeatherByCityId(cityId) {
+        $.ajax({
+            type:'get',
+            url:'/weather/citys/'+cityId,
+            dataType:'json',
+            success:function (result) {
+                var data = result['data'];
+                // 填充页面信息
+                putInWeather(data);
+                scrollTo(0,0);//回到顶部
+            },
+            error:function () {
+                alert("获取天气信息失败");
+            }
+        });
+    }
+
     // ---------------------------------------------- 左侧入口点击事件 ----------------------------------------------
     //点击悄悄话
     $('.superAdminList .privateWord').click(function () {
@@ -875,6 +941,11 @@
         getCarInfo(1);
     });
 
+    // 天气信息 入口点击事件
+    $('.superAdminList .weatherInfo').click(function () {
+        getWeatherCitys();
+    });
+
     // ---------------------------------------------- 右侧点击事件 ----------------------------------------------
     // 添加文章分类
     $('#addCategory_btn').click(function () {
@@ -908,7 +979,6 @@
         var $contentEl = $activeDiv.find('.emailContent');
         var $fileEl = $activeDiv.find('.emailFile');
 
-        alert($emailToEl.val()+'==='+$subjectEl.val()+'==='+$contentEl.val()+'=='+$navLiEl.index());
         var emailUrl, emailData;
         emailData = {to: $emailToEl.val(),
             subject: $subjectEl.val(),
@@ -927,6 +997,12 @@
 
         postEmailInfo(emailUrl,emailData);
     });
+
+    // 天气城市发生变化
+    $("#selectCityId").change(function(){
+        var cityId=$("#selectCityId").val();
+        getWeatherByCityId(cityId);
+    })
 
     getStatisticsInfo();
 

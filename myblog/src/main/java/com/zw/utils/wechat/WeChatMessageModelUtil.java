@@ -1,10 +1,16 @@
 package com.zw.utils.wechat;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zw.constant.UrlConst;
 import com.zw.constant.WeChatContant;
 import com.zw.controller.ExpresssController;
+import com.zw.controller.QiuShiController;
+import com.zw.controller.RankCollector;
 import com.zw.model.Forecast;
+import com.zw.model.QiuShiModel;
 import com.zw.model.Weather;
+import com.zw.model.music.HotSinger;
+import com.zw.model.music.Rank;
 import com.zw.model.wechat.ArticleItem;
 import com.zw.model.wechat.Image;
 import com.zw.model.wechat.res.*;
@@ -14,6 +20,7 @@ import com.zw.service.WeatherDateService;
 import com.zw.service.impl.WeatherDateServiceImpl;
 import com.zw.utils.TodayInHistoryServiceUtil;
 
+import java.io.IOException;
 import java.util.*;
 
 public class WeChatMessageModelUtil {
@@ -92,8 +99,8 @@ public class WeChatMessageModelUtil {
         locationMessage.setFromUserName(weChatMessageUserInfo.getFromUserName());
 //        locationMessage.setFuncFlag(0);
         locationMessage.setLabel("dd");
-        locationMessage.setLocation_X("111");
-        locationMessage.setLocation_Y("111");
+        locationMessage.setLocation_X("12.21");
+        locationMessage.setLocation_Y("33.2");
         locationMessage.setScale("1");
         return WeChatUtil.locationMessageToXml(locationMessage);
     }
@@ -273,158 +280,97 @@ public class WeChatMessageModelUtil {
         return respMessage;
     }
 
-    private void articles(WeChatMessageUserInfo weChatMessageUserInfo, String content){
-        String respMessage = null;
-
-        ArticleMessage articleMessage = new ArticleMessage();
-        articleMessage.setToUserName(weChatMessageUserInfo.getToUserName());
-        articleMessage.setFromUserName(weChatMessageUserInfo.getFromUserName());
-//        articleMessage.setFuncFlag(1);
-        List<ArticleItem> articleList = new ArrayList<ArticleItem>();
-        // 单图文消息---不含图片
-        if ("2".equals(content)) {
-            ArticleItem article = new ArticleItem();
-            article.setTitle("微信公众帐号开发教程Java版");
-            // 图文消息中可以使用QQ表情、符号表情
-            article.setDescription("zw，90后，" + WeChatUtil.emoji(0x1F6B9)
-                    + "，微信公众帐号开发经验4个月。为帮助初学者入门，特推出此系列连载教程，也希望借此机会认识更多同行！\n\n目前已推出教程共12篇，包括接口配置、消息封装、框架搭建、QQ表情发送、符号表情发送等。\n\n后期还计划推出一些实用功能的开发讲解，例如：天气预报、周边搜索、聊天功能等。");
-            // 将图片置为空
-            article.setPicUrl("");
-            article.setUrl("http://blog.csdn.net/lyq8479");
-            articleList.add(article);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
-        }// 多图文消息
-        else if ("3".equals(content)) {
-            ArticleItem article1 = new ArticleItem();
-            article1.setTitle("微信公众帐号开发教程\n引言");
-            article1.setDescription("");
-            article1.setPicUrl("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3581523617,2199930107&fm=26&gp=0.jpg");
-            article1.setUrl("http://blog.csdn.net/lyq8479/article/details/8937622");
-
-            ArticleItem article2 = new ArticleItem();
-            article2.setTitle("第2篇\n微信公众帐号的类型");
-            article2.setDescription("");
-            article2.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article2.setUrl("http://blog.csdn.net/lyq8479/article/details/8941577");
-
-            ArticleItem article3 = new ArticleItem();
-            article3.setTitle("第3篇\n开发模式启用及接口配置");
-            article3.setDescription("");
-            article3.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article3.setUrl("http://blog.csdn.net/lyq8479/article/details/8944988");
-
-            articleList.add(article1);
-            articleList.add(article2);
-            articleList.add(article3);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
+    /**
+     * 处理关键字信息
+     * @param mes
+     * @return
+     */
+    public static String sendKeyWordMessageWithContent(WeChatMessageUserInfo weChatMessageUserInfo, String mes){
+        if(WeChatUtil.isQqFace(mes)){
+            // 如果为表情，回复表情
+            return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,mes);
+        } else if("模版".equals(mes)){
+            // 类型发送失败
+            return WeChatMessageModelUtil.sendLinkMessage(weChatMessageUserInfo, "模版标题", "模版描述", "https://baidu.com");
+        }else if("定位".equals(mes)){
+            String  respXml = WeChatMessageModelUtil.sendLocationMessage(weChatMessageUserInfo);
+            respXml = respXml.replace("Location__X", "Location_X").replace("Location__Y","Location_Y");
+            System.out.print("==="+respXml);
+            return respXml;
+        }else if("接收图片信息".equals(mes)){
+            return WeChatMessageModelUtil.doImageMessage(weChatMessageUserInfo);
+        }else  if("二维码".equals(mes)){
+            return WeChatMessageModelUtil.doCode(weChatMessageUserInfo);
+        }else  if("历史上的今天".equals(mes)){
+            return WeChatMessageModelUtil.doTodyOfHistory(weChatMessageUserInfo);
+        }// 如果以“歌曲榜”开头
+        else if (mes.startsWith("歌曲榜")) {
+            // 将歌曲2个字及歌曲后面的+、空格、-等特殊符号去掉
+            String keyWord = mes.replaceAll("^歌曲榜[\\+ ~!@#%^-_=]?", "");
+            // 如果歌曲榜关键词名称为空
+            if (!("".equals(keyWord))) {
+                String[] kwArr = keyWord.split("@");
+                // 歌曲榜名称
+                String musicPopTitle = kwArr[0];
+                try {
+                    return WeChatMessageModelUtil.doMusicPop(weChatMessageUserInfo, musicPopTitle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        // 多图文消息---首条消息不含图片
-        else if ("4".equals(content)) {
-            ArticleItem article1 = new ArticleItem();
-            article1.setTitle("微信公众帐号开发教程Java版");
-            article1.setDescription("");
-            // 将图片置为空
-            article1.setPicUrl("");
-            article1.setUrl("http://blog.csdn.net/lyq8479");
+        else if (mes.startsWith("歌曲")) {
+            // 将歌曲2个字及歌曲后面的+、空格、-等特殊符号去掉
+            String keyWord = mes.replaceAll("^歌曲[\\+ ~!@#%^-_=]?", "");
+            // 如果歌曲名称为空
+            if ("".equals(keyWord)) {
+                return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,"歌曲名不能为空哦");
+            } else {
+                String[] kwArr = keyWord.split("@");
+                // 歌曲名称
+                String musicTitle = kwArr[0];
+                // 搜索音乐
+                try {
+                    return WeChatMessageModelUtil.doMusicSearch(weChatMessageUserInfo, musicTitle);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            ArticleItem article2 = new ArticleItem();
-            article2.setTitle("第4篇\n消息及消息处理工具的封装");
-            article2.setDescription("");
-            article2.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article2.setUrl("http://blog.csdn.net/lyq8479/article/details/8949088");
 
-            ArticleItem article3 = new ArticleItem();
-            article3.setTitle("第5篇\n各种消息的接收与响应");
-            article3.setDescription("");
-            article3.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article3.setUrl("http://blog.csdn.net/lyq8479/article/details/8952173");
-
-            ArticleItem article4 = new ArticleItem();
-            article4.setTitle("第6篇\n文本消息的内容长度限制揭秘");
-            article4.setDescription("");
-            article4.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article4.setUrl("http://blog.csdn.net/lyq8479/article/details/8967824");
-
-            articleList.add(article1);
-            articleList.add(article2);
-            articleList.add(article3);
-            articleList.add(article4);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
+            }
+        }else if(mes.startsWith("天气")){
+            // 将天气2个字及天气后面的+、空格、-等特殊符号去掉
+            String keyWord = mes.replaceAll("^天气[\\+ ~!@#%^-_=]?", "");
+            if ("".equals(keyWord)) {
+                return "城市信息为空哦";
+            } else {
+                String[] kwArr = keyWord.split("@");
+                // 歌曲名称
+                String weatherTitle = kwArr[0];
+                if(WeChatUtil.isInteger(mes)){ // 城市id
+                    return WeChatMessageModelUtil.doWeatherById(weChatMessageUserInfo,weatherTitle);
+                }else{
+                    return WeChatMessageModelUtil.doWeatherByName(weChatMessageUserInfo,weatherTitle);
+                }
+            }
+        }else if(mes.startsWith("快递")){
+            // 将快递2个字及天气后面的+、空格、-等特殊符号去掉
+            String keyWord = mes.replaceAll("^快递[\\+ ~!@#%^-_=]?", "");
+            if ("".equals(keyWord)) {
+                return "快递信息不能为空哦";
+            } else {
+                String[] kwArr = keyWord.split("@");
+                // 快递名称
+                String expressTitle = kwArr[0];
+                String expressOrderId = kwArr[1];
+                return WeChatMessageModelUtil.doExpress(weChatMessageUserInfo,expressTitle, expressOrderId);
+            }
+        }else if(mes.startsWith("笑话")){
+            return WeChatMessageModelUtil.collectQiuShi(weChatMessageUserInfo);
         }
-        // 多图文消息---最后一条消息不含图片
-        else if ("5".equals(content)) {
-            ArticleItem article1 = new ArticleItem();
-            article1.setTitle("第7篇\n文本消息中换行符的使用");
-            article1.setDescription("");
-            article1.setPicUrl("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3581523617,2199930107&fm=26&gp=0.jpg");
-            article1.setUrl("http://blog.csdn.net/lyq8479/article/details/9141467");
-
-            ArticleItem article2 = new ArticleItem();
-            article2.setTitle("第8篇\n文本消息中使用网页超链接");
-            article2.setDescription("");
-            article2.setPicUrl("http://avatar.csdn.net/1/4/A/1_lyq8479.jpg");
-            article2.setUrl("http://blog.csdn.net/lyq8479/article/details/9157455");
-
-            ArticleItem article3 = new ArticleItem();
-            article3.setTitle("如果觉得文章对你有所帮助，请通过博客留言或关注微信公众帐号xiaoqrobot来支持柳峰！");
-            article3.setDescription("");
-            // 将图片置为空
-            article3.setPicUrl("");
-            article3.setUrl("http://blog.csdn.net/lyq8479");
-
-            articleList.add(article1);
-            articleList.add(article2);
-            articleList.add(article3);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
-        }else if ("6".equals(content)){
-            //测试单图文回复
-            ArticleItem article = new ArticleItem();
-            article.setTitle("微信公众帐号开发教程Java版");
-            // 图文消息中可以使用QQ表情、符号表情
-            article.setDescription("这是测试有没有换行\n\n如果有空行就代表换行成功\n\n点击图文可以跳转到百度首页");
-            // 将图片置为空
-            article.setPicUrl("http://www.sinaimg.cn/dy/slidenews/31_img/2016_38/28380_733695_698372.jpg");
-            article.setUrl("http://www.baidu.com");
-            articleList.add(article);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
-        }else if ("7".equals(content)){
-            //多图文发送
-            ArticleItem article1 = new ArticleItem();
-            article1.setTitle("紧急通知，不要捡这种钱！湛江都已经传疯了！\n");
-            article1.setDescription("");
-            article1.setPicUrl("http://www.sinaimg.cn/dy/slidenews/31_img/2016_38/28380_733695_698372.jpg");
-            article1.setUrl("http://mp.weixin.qq.com/s?__biz=MjM5Njc2OTI4NQ==&mid=2650924309&idx=1&sn=8bb6ae54d6396c1faa9182a96f30b225&chksm=bd117e7f8a66f769dc886d38ca2d4e4e675c55e6a5e01e768b383f5859e09384e485da7bed98&scene=4#wechat_redirect");
-
-            ArticleItem article2 = new ArticleItem();
-            article2.setTitle("湛江谁有这种女儿，请给我来一打！");
-            article2.setDescription("");
-            article2.setPicUrl("http://www.sinaimg.cn/dy/slidenews/31_img/2016_38/28380_733695_698372.jpg");
-            article2.setUrl("http://mp.weixin.qq.com/s?__biz=MjM5Njc2OTI4NQ==&mid=2650924309&idx=2&sn=d7ffc840c7e6d91b0a1c886b16797ee9&chksm=bd117e7f8a66f7698d094c2771a1114853b97dab9c172897c3f9f982eacb6619fba5e6675ea3&scene=4#wechat_redirect");
-
-            ArticleItem article3 = new ArticleItem();
-            article3.setTitle("以上图片我就随意放了");
-            article3.setDescription("");
-            article3.setPicUrl("http://www.sinaimg.cn/dy/slidenews/31_img/2016_38/28380_733695_698372.jpg");
-            article3.setUrl("http://mp.weixin.qq.com/s?__biz=MjM5Njc2OTI4NQ==&mid=2650924309&idx=3&sn=63e13fe558ff0d564c0da313b7bdfce0&chksm=bd117e7f8a66f7693a26853dc65c3e9ef9495235ef6ed6c7796f1b63abf1df599aaf9b33aafa&scene=4#wechat_redirect");
-
-            articleList.add(article1);
-            articleList.add(article2);
-            articleList.add(article3);
-            articleMessage.setArticleCount(articleList.size());
-            articleMessage.setArticles(articleList);
-            respMessage = WeChatUtil.newsMessageToXml(articleMessage);
-        }
+        return "";
     }
+
 
     /**
      * 发送消息图文
@@ -634,13 +580,99 @@ public class WeChatMessageModelUtil {
         buffer.append("1  公众号文章推荐").append("\n");
         buffer.append("2  天气查询,例如天气@北京").append("\n");
         buffer.append("3  快递查询,例如快递@ZT@75133091840496").append("\n");
-        buffer.append("4  歌曲点播").append("\n");
-        buffer.append("5  经典游戏").append("\n");
-        buffer.append("6  美女电台").append("\n");
-        buffer.append("7  人脸识别").append("\n");
-        buffer.append("8  聊天唠嗑").append("\n\n");
+        buffer.append("4  歌曲排行榜,例如歌曲榜@飙升榜,歌曲榜@TOP500,歌曲榜@网络红歌").append("\n");
+        buffer.append("5  歌曲搜索,例如歌曲@断点").append("\n");
+        buffer.append("6  笑话,例如笑话").append("\n");
         buffer.append("回复“0”显示此帮助菜单");
         return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo, buffer.toString());
+    }
+
+    /***
+     * 音乐排行榜搜索
+     * @param musicPopTitle
+     * @return
+     * @throws Exception
+     */
+    public static String doMusicPop(WeChatMessageUserInfo weChatMessageUserInfo, String musicPopTitle) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder();
+        switch (musicPopTitle) {
+            case "飙升榜":
+                WeChatMessageModelUtil.collectSongRank(stringBuilder, UrlConst.HOT_RANK_URL);
+                break;
+            case "TOP500":
+                WeChatMessageModelUtil.collectSongRank(stringBuilder, UrlConst.TOP_500_RANK_URL);
+                break;
+            case "网络红歌":
+                WeChatMessageModelUtil.collectSongRank(stringBuilder, UrlConst.NETWORK_HOT_RANK_URL);
+                break;
+            case "华语新歌":
+                WeChatMessageModelUtil.collectSongRank(stringBuilder, UrlConst.HUAYU_NEW_SONG_RANK_URL);
+                break;
+            case "洗脑神曲":
+                WeChatMessageModelUtil.collectSongRank(stringBuilder, UrlConst.XINAO_SONG_RANK_URL);
+                break;
+            default:
+                stringBuilder.append("暂时无此分类噢！");
+                break;
+        }
+        return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,stringBuilder.toString());
+    }
+
+    /**
+     *  歌曲排行搜索
+     */
+    private static void collectSongRank(StringBuilder stringBuilder, String url) throws IOException {
+        RankCollector collector = new RankCollector();
+        Rank rank = collector.collect(url);
+        stringBuilder.append("\uD83D\uDD25" + rank.getScope() + "[" + rank.getUpdateTime() + "]\n\n");
+        for (HotSinger hotSinger : rank.getHotSingerList()) {
+            stringBuilder.append(hotSinger.getName() + "-" + hotSinger.getHotSong() + "-" + hotSinger.getSongUrl() + "\n");
+        }
+    }
+
+
+    /***
+     * 歌曲搜索
+     * @param weChatMessageUserInfo
+     * @param musicPTitle
+     * @return
+     * @throws Exception
+     */
+    public static String doMusicSearch(WeChatMessageUserInfo weChatMessageUserInfo, String musicPTitle) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder();
+        if ("".equals(musicPTitle)){
+            stringBuilder.append("没有查到该歌曲");
+        }else{
+            WeChatMessageModelUtil.searchCollectSongRank(stringBuilder, UrlConst.MUSIC_SEARCH_URL.replace("kw", musicPTitle));
+        }
+        return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,stringBuilder.toString());
+    }
+
+    /**
+     *  歌曲搜索
+     */
+    private static void searchCollectSongRank(StringBuilder stringBuilder, String url) throws IOException {
+        RankCollector collector = new RankCollector();
+        Rank rank = collector.searchCollect(url);
+        stringBuilder.append(rank.getScope()+"\n\n");
+        for (HotSinger hotSinger : rank.getHotSingerList()) {
+            stringBuilder.append(hotSinger.getName() + "-" + hotSinger.getHotSong() + "-" + hotSinger.getSongUrl() + "\n");
+        }
+    }
+
+
+    /**
+     *  笑话
+     */
+    private static String collectQiuShi(WeChatMessageUserInfo weChatMessageUserInfo) {
+        QiuShiController collector = new QiuShiController();
+        QiuShiModel rank = null;
+        try {
+            rank = collector.collect(UrlConst.QIUSHI_TEXT_URL);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return WeChatMessageModelUtil.sendTextMessage(weChatMessageUserInfo,rank.getContent());
     }
 
 }

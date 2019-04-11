@@ -13,6 +13,42 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 
 public class HttpUtil {
+
+    /**
+     * 获取网络请求数据
+     * @return 网络数据内容
+     */
+    public static JSONObject httpGet(String url){
+        //实例化httpClient
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        //实例化post方法
+        HttpGet httpGet = new HttpGet(url);
+        JSONObject contentObject = null;
+        try{
+            CloseableHttpResponse response = httpclient.execute(httpGet);
+            if(response.getStatusLine().getStatusCode()==200){ // 加了状态验证
+                String result = EntityUtils.toString(response.getEntity(),"utf-8");
+                contentObject = JSONObject.parseObject(result);
+            }
+        }catch (ClientProtocolException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return contentObject;
+    }
+
+    /**
+     * 获取网络请求数据
+     * @return 网络数据内容
+     */
+    public static JSONObject GET(String url){
+        String result = HttpUtil.doGetstr(url);
+        JSONObject resultObject = JSONObject.parseObject(result);
+        return resultObject;
+    }
+
+
     /**
      * 发送POST请求
      *
@@ -31,7 +67,7 @@ public class HttpUtil {
         httpPost.setEntity(entity);
         try{
             CloseableHttpResponse response = client.execute(httpPost);
-            if(response.getStatusLine().getStatusCode() == 200) {
+            if(response.getStatusLine().getStatusCode() == 200) {  // 加了状态验证
                 String result = EntityUtils.toString(response.getEntity(),"UTF-8"); // 返回json格式
                 respContent = JSONObject.parseObject(result);
             }
@@ -42,50 +78,35 @@ public class HttpUtil {
     }
 
     /**
-     * 获取网络请求数据
-     * @return 网络数据内容
-     */
-    public static JSONObject httpGet(String url){
-        //实例化httpClient
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        //实例化post方法
-        HttpGet httpGet = new HttpGet(url);
-        JSONObject contentObject = null;
-        try{
-            CloseableHttpResponse response = httpclient.execute(httpGet);
-            if(response.getStatusLine().getStatusCode()==200){
-                String result = EntityUtils.toString(response.getEntity(),"utf-8");
-                contentObject = JSONObject.parseObject(result);
-            }
-        }catch (ClientProtocolException e){
-            e.printStackTrace();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        return contentObject;
-    }
-
-
-    /**
-     * 处理doget请求
+     * 处理post请求
      * @param url
      * @return
      */
-    public static JSONObject doGetstr(String url){
+    public static JSONObject POST(String url,String outStr) {
+        String result = HttpUtil.doPoststr(url, outStr);
+        JSONObject resultObject = JSONObject.parseObject(result);
+        return resultObject;
+    }
+
+    /**
+     * 处理doget请求,返回字符串
+     * @param url
+     * @return
+     */
+    public static String doGetstr(String url){
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
-        JSONObject jsonObject = null;
+        String resultObject = null;
         try {
             CloseableHttpResponse response = httpclient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if(entity!=null){
-                String result = EntityUtils.toString(entity,"utf-8");
-                jsonObject = JSONObject.parseObject(result);
+                resultObject = EntityUtils.toString(entity,"utf-8");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonObject;
+        return resultObject;
 
     }
 
@@ -94,19 +115,18 @@ public class HttpUtil {
      * @param url
      * @return
      */
-    public static JSONObject doPoststr(String url,String outStr) {
+    public static String doPoststr(String url,String outStr) {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
-        JSONObject jsonObject = null;
+        String resultObject = null;
         try {
             httpPost.setEntity(new StringEntity(outStr, "utf-8"));
             CloseableHttpResponse response = httpclient.execute(httpPost);
-            String result = EntityUtils.toString(response.getEntity(), "utf-8");
-            jsonObject = JSONObject.parseObject(result);
+            resultObject = EntityUtils.toString(response.getEntity(), "utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jsonObject;
+        return resultObject;
     }
 }
 
